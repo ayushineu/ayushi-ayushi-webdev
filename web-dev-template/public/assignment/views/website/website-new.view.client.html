@@ -1,0 +1,152 @@
+
+<nav class="navbar navbar-fixed-top navbar-fnt ">
+    <div class="container-fluid">
+        <div class="row">
+            <div class=" col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <p class="navbar-text navbar-fnt">
+                    <a href="#/user/{{model.uid}}/website">
+                        <span class="glyphicon glyphicon-chevron-left navbar-fnt"></span>
+                    </a>
+
+                </p>
+            </div>
+
+            <div class="hidden-xs hidden-sm col-md-3 col-lg-3">
+                <a class="navbar-brand" >
+                    <span class=" navbar-fnt pull-left ">Websites</span>
+                </a>
+            </div>
+
+            <div class=" hidden-xs hidden-sm col-md-1 col-lg-1 pull-left">
+                <p class="navbar-text navbar-fnt">
+                    <a href="#/user/{{model.uid}}/website/new" class="navbar-link">
+                    <span class="glyphicon glyphicon-plus navbar-fnt"></span>
+                    </a>
+                </p>
+            </div>
+
+            <div class="col-xs-9 col-sm-9 col-md-6 col-lg-6">
+                <a class="navbar-brand" >
+                    <span class=" navbar-fnt ">New Website</span>
+                </a>
+            </div>
+
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <p class="navbar-text">
+                    <a href ng-click="model.createNewWebsite(model.website)" class="navbar-link ">
+                        <span class="glyphicon glyphicon-ok navbar-fnt"></span>
+                    </a>
+                </p>
+            </div>
+        </div>`
+    </div>
+</nav>
+
+
+<div class="row">
+    <div class="container-fluid">
+        <div class="hidden-xs hidden-sm col-md-5 col-lg-5 right-line">
+            <div class="right-down">
+                <ul style="list-style-type: none;"class="list-group" class="list-group">
+                    <li ng-repeat="website in model.websites" >
+                        <div class="hidden-xs hidden-sm col-md-9 col-lg-9 right-line">
+
+                        <a href="#/user/{{model.uid}}/website/{{website._id}}/page">{{website.name}}</a>
+                            </div>
+                        <div class="hidden-xs hidden-sm col-md-2 col-lg-2 right-line">
+                        <a href="#/user/{{website.developerId}}/website/{{website._id}}">
+                            <span class="glyphicon glyphicon-cog pull-right"/>
+                        </a>
+                            </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    <div class="container-fluid col-xs-12 col-sm-12 col-md-7 col-lg-7">
+        <form>
+
+            <div class="form-group">
+                <label for ="webname" >Name</label>
+                <input id="webname" ng-model="model.website.name" type="text" class="form-control" id="username" placeholder="Name">
+            </div>
+
+            <div class="form-group">
+                <label for ="webdes">Description</label>
+                <textarea id="webdes" ng-model="model.website.description"class="form-control" placeholder="Description" rows=6></textarea>
+            </div>
+
+        </form>
+    </div>
+
+    <nav class="navbar  navbar-fixed-bottom navbar-fnt">
+        <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-10 col-md-11 col-sm-11 col-lg-11"></div>
+            <div class="col-xs-2 col-md-1 col-sm-1 col-lg-1 pull-left">
+
+                    <div class="navbar-text">
+                        <a href="#/user/{{model.uid}}">
+                            <span class="glyphicon glyphicon-user navbar-fnt "></span>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
+
+
+
+    <!--<div class="container-fluid ">
+    <div class=" hidden-xs hidden-sm col-md-5 col-lg-5 ver-line">
+
+        <div class="hidden-xs hidden-sm col-md-10 col-lg-10">
+            <a href ="../views/page/page-list.html">
+                <p class="text-fnt pull-left">Blogging App</p>
+            </a>
+        </div>
+
+        <div class="hidden-xs hidden-sm col-md-2 col-lg-2">
+            <a href ="website-edit.view.client.html">
+                <span class="glyphicon glyphicon-cog pull-left text-fnt "></span>
+            </a>
+        </div>
+
+        <div class="hidden-xs hidden-sm col-md-10 col-lg-10">
+            <a href ="../views/page/page-list.html">
+                <p class="text-fnt pull-left">Address Book App</p>
+            </a>
+        </div>
+
+        <div class="hidden-xs hidden-sm col-md-2 col-lg-2">
+            <a href ="website-edit.view.client.html">
+                <span class="glyphicon glyphicon-cog pull-left text-fnt "></span>
+            </a>
+        </div>
+
+        <div class="hidden-xs hidden-sm col-md-10 col-lg-10">
+            <a href ="../views/page/page-list.html">
+                <p class="text-fnt pull-left">Script Testing App</p>
+            </a>
+        </div>
+
+        <div class="hidden-xs hidden-sm col-md-2 col-lg-2">
+            <a href ="website-edit.view.client.html">
+                <span class="glyphicon glyphicon-cog pull-left text-fnt "></span>
+            </a>
+        </div>
+
+        <div class="hidden-xs hidden-sm col-md-10 col-lg-10">
+            <a href ="../views/page/page-list.html">
+                <p class="text-fnt pull-left">Blogger</p>
+            </a>
+        </div>
+
+        <div class="hidden-xs hidden-sm col-md-2 col-lg-2">
+            <a href ="#/user/{{website.developerId}}/website/{{website._id}}">
+                <span class="glyphicon glyphicon-cog pull-left text-fnt "></span>
+            </a>
+        </div>
+    </div>--->
+

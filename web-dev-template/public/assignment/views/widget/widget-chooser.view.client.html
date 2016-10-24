@@ -1,14 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>widget-choose</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="style.css" rel="stylesheet"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <meta name="HandheldFriendly" content="true" />
-</head>
-<body>
 
 <nav class="navbar navbar-default navbar-fixed-top  ">
     <div class="container-fluid">
@@ -16,7 +5,7 @@
 
                 <div class="col-md-1 col-xs-1 col-sm-1 col-lg-1">
                     <p class="navbar-text">
-                        <a href="website-list.html" class="navbar-link">
+                        <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget" class="navbar-link">
                         <span class="glyphicon glyphicon-chevron-left ">
                         </span>
                         </a>
@@ -43,88 +32,68 @@
 
 
             <div class="col-xs-10 col-md-10 col-sm-10 col-lg-10">
-                <a href="widget-heading.html">
+                <a href ng-click="model.createWidget(model.createHeader)">
                 <p class="text-fnt pull-left">Header</p>
                 </a>
             </div>
 
-            <div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
-                <span class="glyphicon glyphicon-cog pull-right text-fnt "></span>
-            </div>
+
 
             <div class="col-xs-10 col-md-10 col-sm-10 col-lg-10">
                 <p class="text-fnt pull-left">Label</p>
             </div>
 
-            <div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
-                <span class="glyphicon glyphicon-cog pull-right text-fnt "></span>
-            </div>
+
 
             <div class="col-xs-10 col-md-10 col-sm-10 col-lg-10">
                 <p class="text-fnt pull-left">HTML</p>
             </div>
 
-            <div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
-                <span class="glyphicon glyphicon-cog pull-right text-fnt "></span>
-            </div>
+
 
             <div class="col-xs-10 col-md-10 col-sm-10 col-lg-10">
                 <p class="text-fnt pull-left">Text Input</p>
             </div>
-            <div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
-                <span class="glyphicon glyphicon-cog pull-right text-fnt  "></span>
-            </div>
+
             <div class="col-xs-10 col-md-10 col-sm-10 col-lg-10">
                 <p class="text-fnt pull-left">Link</p>
             </div>
 
-            <div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
-                <span class="glyphicon glyphicon-cog pull-right text-fnt  "></span>
-            </div>
+
 
             <div class="col-xs-10 col-md-10 col-sm-10 col-lg-10">
                 <p class="text-fnt pull-left">Button</p>
             </div>
 
-            <div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
-                <span class="glyphicon glyphicon-cog pull-right text-fnt  "></span>
-            </div>
+
 
             <div class="col-xs-10 col-md-10 col-sm-10 col-lg-10">
-                <a href="widget-image.html">
+                <a href ng-click="model.createWidget(model.createImage)">
                 <p class="text-fnt pull-left">Image</p>
                 </a>
             </div>
 
-            <div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
-                <span class="glyphicon glyphicon-cog pull-right text-fnt  "></span>
-            </div>
+
 
             <div class="col-xs-10 col-md-10 col-sm-10 col-lg-10">
-                <a href="widget-youtube.html">
+                <a href ng-click="model.createWidget(model.createYoutube)">
                 <p class="text-fnt pull-left">Youtube</p>
                 </a>
             </div>
 
-            <div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
-                <span class="glyphicon glyphicon-cog pull-right text-fnt  "></span>
-            </div>
+
 
             <div class="col-xs-10 col-md-10 col-sm-10 col-lg-10">
                 <p class="text-fnt pull-left">Data Table</p>
             </div>
 
-            <div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
-                <span class="glyphicon glyphicon-cog pull-right text-fnt  "></span>
-            </div>
+
 
             <div class="col-xs-10 col-md-10 col-sm-10 col-lg-10">
                 <p class="text-fnt pull-left">Repeater</p>
             </div>
 
-            <div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
-                <span class="glyphicon glyphicon-cog pull-right text-fnt  "></span>
-            </div>
+
 
         </div>
 
@@ -136,7 +105,7 @@
         <div class="col-xs-2 col-md-1 col-sm-1 col-lg-1 pull-right">
             <div class="container">
                 <div class="row navbar-text">
-                    <a href="profile.html">
+                    <a href="#/user/{{model.uid}}">
                         <span class="glyphicon glyphicon-user "></span>
                     </a>
                 </div>
@@ -144,5 +113,3 @@
         </div>
     </div>
 </nav>
-</body>
-</html>

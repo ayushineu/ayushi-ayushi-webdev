@@ -13,14 +13,11 @@ body {
 .navbar-fnt {
     display: block;
     font-weight: bold;
-
+    background-color: #428bca ;
     color:#FFFFFF;
     height: 28px;
 }
 
-.p-w-list{
-    margin-top:10px;
-}
 .padding-body{
     padding-top: 60px;
     padding-bottom :50px;
@@ -47,12 +44,19 @@ body {
     border-bottom-left-radius: 5px;
 }
 
+.p-w-list{
+    margin-top:10px;
+}
 
-
-.cog-pos{
-    top:0;
+.cog-pos {
+    top: 13px;
     position: relative;
-    left:0;
+    left: 0;
+    z-index: 100;
+    padding-right: 17px;
+    background-color: white;
+    border-bottom-left-radius: 5px;
+
 }
 
 a:hover{text-decoration:none;}

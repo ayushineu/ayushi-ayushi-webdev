@@ -1,21 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Page-list</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="style.css" rel="stylesheet"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <meta name="HandheldFriendly" content="true" />
-</head>
-<body>
 
 <nav class="navbar navbar-default navbar-fixed-top  ">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-11 col-xs-10 col-sm-11 col-lg-11">
                 <p class="navbar-text pull-left">
-                    <a href = "website-list.html" class="navbar-link">
+                    <a href = "#/user/{{model.uid}}/website" class="navbar-link">
                         <span class="glyphicon glyphicon-chevron-left "></span>
                     </a>
 
@@ -27,7 +16,7 @@
 
             <div class="col-xs-1 col-md-1 col-sm-1 col-lg-1 pull-right">
                 <p class="navbar-text pull-right">
-                    <a href="page-new.html" class="navbar-link ">
+                    <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/new" class="navbar-link ">
                         <span class="glyphicon glyphicon-plus "></span>
                     </a>
                 </p>
@@ -36,65 +25,20 @@
     </div>
 </nav>
 
-<div class="container-fluid">
-    <div class="container-fluid">
-        <div class="row">
 
-            <div class="col-xs-10 col-md-10 col-sm-10 col-lg-10">
-                <a href="widget-list.html">
-                    <p class="text-fnt pull-left">Blog Post</p>
-                </a>
-            </div>
-            <a href="page-edit.html">
-                <div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
-                    <span class="glyphicon glyphicon-cog pull-right text-fnt "></span>
-                </div>
+<div class="container">
+    <ul class="list-group">
+        <li ng-repeat="page in model.pages" class="list-group-item">
+
+            <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{page._id}}/widget">{{page.name}}</a>
+
+            <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{page._id}}" class="pull-right">
+
+                <span class="glyphicon glyphicon-cog"/>
             </a>
-            <div class="col-xs-10 col-md-10 col-sm-10 col-lg-10">
-                <a href="widget-list.html">
-                    <p class="text-fnt pull-left">Blogs</p>
-                </a>
-            </div>
-            <a href="page-edit.html">
-                <div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
-                    <span class="glyphicon glyphicon-cog pull-right text-fnt "></span>
-                </div>
-            </a>
-            <div class="col-xs-10 col-md-10 col-sm-10 col-lg-10">
-                <a href ="widget-list.html">
-                    <p class="text-fnt pull-left">Home</p>
-                </a>
-            </div>
-            <a href="page-edit.html">
-                <div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
-                    <span class="glyphicon glyphicon-cog pull-right text-fnt "></span>
-                </div>
-            </a>
-            <div class="col-xs-10 col-md-10 col-sm-10 col-lg-10">
-                <a href="widget-list.html">
-                    <p class="text-fnt pull-left">About</p>
-                </a>
-            </div>
-            <a href="page-edit.html">
-                <div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
-                    <span class="glyphicon glyphicon-cog pull-right text-fnt "></span>
-                </div>
-            </a>
-            <div class="col-xs-10 col-md-10 col-sm-10 col-lg-10">
-                <a href="widget-list.html">
-                    <p class="text-fnt pull-left">Contact Us</p>
-                </a>
-            </div>
-            <a href="page-edit.html">
-                <div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
-                    <span class="glyphicon glyphicon-cog pull-right text-fnt "></span>
-                </div>
-            </a>
-        </div>
-    </div>
+        </li>
+    </ul>
 </div>
-
-
 
 <div class="container">
     <nav class="navbar navbar-default navbar-fixed-bottom ">
@@ -103,7 +47,7 @@
             <div class="col-xs-2 col-md-1 col-sm-1 col-lg-1 pull-right">
                 <div class="container">
                     <div class="row navbar-text">
-                        <a href="profile.html">
+                        <a href="#/user/{{model.uid}}">
                             <span class="glyphicon glyphicon-user "></span>
                         </a>
                     </div>
@@ -112,5 +56,66 @@
         </div>
     </nav>
 </div>
-</body>
-</html>
+
+
+<!---
+<div class="container-fluid">
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-xs-10 col-md-10 col-sm-10 col-lg-10">
+                <a href="../widget/widget-list.view.client.html">
+                    <p class="text-fnt pull-left">Blog Post</p>
+                </a>
+            </div>
+            <a href="page-edit.view.client.html">
+                <div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
+                    <span class="glyphicon glyphicon-cog pull-right text-fnt "></span>
+                </div>
+            </a>
+            <div class="col-xs-10 col-md-10 col-sm-10 col-lg-10">
+                <a href="../widget/widget-list.view.client.html">
+                    <p class="text-fnt pull-left">Blogs</p>
+                </a>
+            </div>
+            <a href="page-edit.view.client.html">
+                <div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
+                    <span class="glyphicon glyphicon-cog pull-right text-fnt "></span>
+                </div>
+            </a>
+            <div class="col-xs-10 col-md-10 col-sm-10 col-lg-10">
+                <a href ="../widget/widget-list.view.client.html">
+                    <p class="text-fnt pull-left">Home</p>
+                </a>
+            </div>
+            <a href="page-edit.view.client.html">
+                <div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
+                    <span class="glyphicon glyphicon-cog pull-right text-fnt "></span>
+                </div>
+            </a>
+            <div class="col-xs-10 col-md-10 col-sm-10 col-lg-10">
+                <a href="../widget/widget-list.view.client.html">
+                    <p class="text-fnt pull-left">About</p>
+                </a>
+            </div>
+            <a href="page-edit.view.client.html">
+                <div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
+                    <span class="glyphicon glyphicon-cog pull-right text-fnt "></span>
+                </div>
+            </a>
+            <div class="col-xs-10 col-md-10 col-sm-10 col-lg-10">
+                <a href="../widget/widget-list.view.client.html">
+                    <p class="text-fnt pull-left">Contact Us</p>
+                </a>
+            </div>
+            <a href="page-edit.view.client.html">
+                <div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
+                    <span class="glyphicon glyphicon-cog pull-right text-fnt "></span>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+--->
+

@@ -13,14 +13,11 @@ body {
 .navbar-fnt {
     display: block;
     font-weight: bold;
-
+    background-color: #428bca;
     color:#FFFFFF;
     height: 28px;
 }
 
-.p-w-list{
-    margin-top:10px;
-}
 .padding-body{
     padding-top: 60px;
     padding-bottom :50px;
@@ -35,6 +32,7 @@ body {
 }
 
 .cogs-pos{position: absolute;
+    right: 15px;
     background-color: white;
     padding-left: 5px;
     padding-bottom: 5px;
