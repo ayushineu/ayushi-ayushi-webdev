@@ -1,0 +1,69 @@
+
+<nav class="navbar navbar-default navbar-fixed-top  ">
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-md-1 col-xs-1 col-sm-1 col-lg-1">
+                <p class="navbar-text">
+                    <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget" class="navbar-link">
+                        <span class="glyphicon glyphicon-chevron-left "></span>
+                    </a>
+                </p>
+            </div>
+
+            <div class="col-md-9 col-xs-9 col-sm-9 col-lg-9">
+                <a class="navbar-brand" >
+                    <span >Widget Edit</span>
+                </a>
+            </div>
+            <div class="col-md-1 col-xs-1 col-sm-1 col-lg-1"></div>
+            <div class="col-xs-1 col-md-1 col-sm-1 col-lg-1">
+                <p class="navbar-text">
+                    <a href ng-click="model.updateWidget(model.widget)" class="navbar-link">
+                        <span class="glyphicon glyphicon-ok pull-right "></span>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+<form>
+    <div class="form-group">
+        <label >Name</label>
+        <input ng-model="model.widget.name" type="text" class="form-control" id="wname" value={{model.widget.name}}>
+    </div>
+    <div class="form-group">
+        <label >Text</label>
+        <input ng-model="model.widget.text" type="text" class="form-control" id="wtitle" value={{model.widget.text}}>
+    </div>
+    <div class="form-group">
+        <label >URL</label>
+        <input ng-model="model.widget.url" type="url" class="form-control"  value={{model.widget.url}}>
+    </div>
+
+    <div class="form-group">
+        <label >Width</label>
+        <input ng-model="model.widget.width" type="text" class="form-control"  value={{model.widget.width}}>
+    </div>
+
+    <a class="btn btn-danger  btn-block" href ng-click="model.deleteWidget(model.widget)">Delete</a>
+</form>
+
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom ">
+    <div class="row">
+        <div class="col-xs-10 col-md-11 col-sm-11 col-lg-11"></div>
+        <div class="col-xs-2 col-md-1 col-sm-1 col-lg-1 pull-right">
+            <div class="container">
+                <div class="row navbar-text">
+                    <a href="#/user/{{model.uid}}">
+                        <span class="glyphicon glyphicon-user "></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>

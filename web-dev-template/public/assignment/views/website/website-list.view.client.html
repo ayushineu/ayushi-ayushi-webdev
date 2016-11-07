@@ -1,0 +1,59 @@
+
+<nav class="navbar navbar-fixed-top navbar-fnt ">
+    <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-11 col-xs-10 col-sm-11 col-lg-11">
+                    <p class="navbar-text pull-left">
+                        <a href = "#/user/{{model.uid}}">
+                            <span class="glyphicon glyphicon-chevron-left navbar-fnt"></span>
+                        </a>
+
+                    </p>
+                    <a class="navbar-brand">
+                            <span class=" navbar-fnt pull-left">Websites</span>
+                    </a>
+                </div>
+
+                <div class="col-xs-1 col-md-1 col-sm-1 col-lg-1 pull-right">
+                    <p class="navbar-text pull-right">
+                        <a href="#/user/{{model.uid}}/website/new" class="navbar-link ">
+                              <span class="glyphicon glyphicon-plus  navbar-fnt"></span>
+                        </a>
+                    </p>
+                </div>
+            </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="container">
+        <ul style="list-style-type: none;"class="list-group">
+            <li ng-repeat="website in model.websites" >
+
+                <a href="#/user/{{model.uid}}/website/{{website._id}}/page">{{website.name}}</a>
+
+
+                <a href="#/user/{{model.uid}}/website/{{website._id}}" class="pull-right">
+                    <span class="glyphicon glyphicon-cog"/>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+<div class="container">
+    <nav  class="navbar  navbar-fixed-bottom navbar-fnt ">
+        <div class="row">
+            <div class="col-xs-10 col-md-11 col-sm-11 col-lg-11"></div>
+            <div class="col-xs-2 col-md-1 col-sm-1 col-lg-1 pull-right">
+                <div class="container">
+                    <div class="row navbar-text">
+                        <a href="#/user/{{model.uid}}">
+                            <span class="glyphicon glyphicon-user navbar-fnt"></span>
+                        </a>
+                    </div>
+                </div>
+                </div>
+            </div>
+    </nav>
+</div>
+</div>

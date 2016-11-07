@@ -1,0 +1,63 @@
+input.form-control {
+    margin-bottom: 5px;
+}
+
+body {
+    padding-top: 65px;
+    padding-bottom: 65px;
+}
+
+.text-fnt{
+    color:#428bca;
+}
+.navbar-fnt {
+    display: block;
+    font-weight: bold;
+    background-color: #428bca;
+    color:#FFFFFF;
+    height: 28px;
+}
+
+.padding-body{
+    padding-top: 60px;
+    padding-bottom :50px;
+}
+
+.gly-style{
+    color:#000000
+}
+
+.img-pos {
+    z-index: -1;
+}
+
+.cogs-pos{position: absolute;
+    right: 15px;
+    background-color: white;
+    padding-left: 5px;
+    padding-bottom: 5px;
+    border-bottom-left-radius: 8px;
+    opacity: 0.7;
+}
+
+.widget-style {
+    background-color: white;
+    border-bottom-left-radius: 5px;
+}
+
+
+
+.cog-pos{
+    top:0;
+    position: relative;
+    left:0;
+}
+
+a:hover{text-decoration:none;}
+a:visited{text-decoration:none;}
+
+.ver-line{
+    height: 100vh;
+    border-right: 1px solid #cccccc;
+
+}
