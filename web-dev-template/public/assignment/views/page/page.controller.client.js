@@ -16,15 +16,14 @@
         function createNewPage(userId,webId,newPage){
             if(newPage.name)
             {
-                var nCreatedPage = PageService.createPage(webId, newPage);
-                console.log(nCreatedPage);
-                if (nCreatedPage) {
-                    $location.url("/user/" + userId + "/website/" + webId + "/page");
-                }
-                else {
-                    vm.error = "Error.Please try again."
-                }
-
+                var promise = PageService.createPage(webId, newPage);
+                promise
+                    .success(function(nCreatedPage){
+                        $location.url("/user/" + userId + "/website/" + webId + "/page");
+                    })
+                    .error(function(err){
+                        vm.error = "Error.Please try again."
+                    });
             }
             else{
 
@@ -40,8 +39,11 @@
         function init(){
             vm.uid = $routeParams.uid;
             vm.wid = $routeParams.wid;
-            vm.pages = PageService.findPageByWebsiteId(vm.wid);
-            console.log(vm.pages);
+            var promise = PageService.findPageByWebsiteId(vm.wid);
+            promise
+                .success(function(pagelist) {
+                    vm.pages=pagelist;
+                });
         }
         init();
     }
@@ -54,32 +56,39 @@
         vm.deletePage = deletePage;
         vm.updatePage = updatePage;
 
-        var page = PageService.findPageById(vm.pid);
-
-        if (page != null) {
-            vm.page = page;
-        }
+        PageService.findPageById(vm.pid)
+            .success(function (cPage) {
+                vm.currentpage = cPage;
+            })
+            .error(function (err) {
+                vm.error = "Cannot find page. Please try again !!"
+            });
 
         function updatePage(pageId, newPage) {
-            var nPage = PageService.updatePage(pageId, newPage);
-            console.log(nPage);
-            if (nPage) {
-                $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page");
-            }
-            else {
-                vm.error = "Page id does not match"
-            }
+            console.log("in here update 3");
+            console.log(pageId);
+            PageService.updatePage(pageId, newPage)
+                .success(function(res){
+                    $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page");
+                    console.log("in here update rtyu");
+                })
+                .error(function(err){
+                    vm.error = "Page id does not match";
+
+                });
+
         }
 
         function deletePage(pageId) {
-            var result = PageService.deletePage(pageId);
-            console.log(result);
-            if (result != null) {
-                $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page");
-            }
-            else {
-                vm.error = "Error.Please try again."
-            }
+            PageService.deletePage(pageId)
+                .success(function(aaa){
+                    $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page");
+                })
+
+                .error(function(err){
+                    vm.error = "Error.Please try again.";
+                });
+
 
         }
 

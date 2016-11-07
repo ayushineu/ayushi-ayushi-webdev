@@ -22,21 +22,24 @@
                 </p>
             </div>
 
-            <div class="col-xs-9 col-sm-10 col-md-6 col-lg-6">
-                <p class="visible-xs visible-sm navbar-text navbar-fnt">
+            <div class="col-xs-10 col-sm-10 col-md-6 col-lg-6">
+                <p class="visible-xs visible-sm navbar-text navbar-fnt col-xs-2 col-sm-3 col-md-3 col-lg-3">
                     <a href="#/user/{{model.uid}}/website">
                         <span class="glyphicon glyphicon-chevron-left navbar-fnt"></span>
                     </a>
                 </p>
-                <a class="navbar-brand" >
-                    <span class=" navbar-fnt ">Edit Website</span>
+                <a class="navbar-brand col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                <span class=" navbar-fnt ">Edit Website</span>
                 </a>
+
+
             </div>
 
-            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 pull-right">
                 <p class="navbar-text">
                     <a ng-click="model.updateWebsite(model.website._id,model.website)" class="navbar-link ">
-          <span class="glyphicon glyphicon-ok navbar-fnt">
+          <span class="glyphicon glyphicon-ok navbar-fnt ">
           </span>
                     </a>
                 </p>
@@ -54,7 +57,7 @@
 
                         <a href="#/user/{{model.uid}}/website/{{website._id}}/page">{{website.name}}</a>
 
-                        <a href="#/user/{{website.developerId}}/website/{{website._id}}" class="pull-right">
+                        <a href="#/user/{{model.uid}}/website/{{website._id}}" class="pull-right ">
                             <span class="glyphicon glyphicon-cog"/>
                         </a>
                     </li>
@@ -67,15 +70,14 @@
         <form>
             <div class="form-group">
                 <label for="wname" >Website Name</label>
-                <input id = "wname" ng-model="model.website.name" type="text" class="form-control" id="username" Value="{{website.name}}">
+                <input id = "wname" ng-model="model.newWebsite.name" type="text" class="form-control" />
             </div>
             <div class="form-group">
                 <label for="webdes"> Website Description</label>
-                <textarea id="webdes" ng-model="model.website.description" class="form-control"  rows=6>So you’ve heard the term “blog” and you want to know what blogs are all about. Well you’ve come to the right place.In this series of articles we will take you from asking what a blog is to having all the knowledge you need to start a blog of your own.
-                </textarea>
+                <textarea id="webdes" ng-model="model.newWebsite.description" class="form-control"  rows=6></textarea>
             </div>
 
-            <a class="btn btn-danger  btn-block" href ng-click="model.deleteWebsite(model.website._id)">Delete</a>
+            <a class="btn btn-danger  btn-block" href ng-click="model.deleteWebsite()">Delete</a>
 
         </form>
     </div>
@@ -88,7 +90,7 @@
             <div class="col-xs-2 col-md-1 col-sm-1 col-lg-1 pull-left">
 
                 <div class="navbar-text">
-                    <a href="#/user/{{model.user.uid}}">
+                    <a href="#/user/{{model.uid}}">
                         <span class="glyphicon glyphicon-user navbar-fnt "></span>
                     </a>
 

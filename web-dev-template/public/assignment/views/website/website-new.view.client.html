@@ -51,10 +51,10 @@
                     <li ng-repeat="website in model.websites" >
                         <div class="hidden-xs hidden-sm col-md-9 col-lg-9 right-line">
 
-                        <a href="#/user/{{model.uid}}/website/{{website._id}}/page">{{website.name}}</a>
+                            <a href="#/user/{{model.uid}}/website/{{website._id}}/page">{{website.name}}</a>
                             </div>
                         <div class="hidden-xs hidden-sm col-md-2 col-lg-2 right-line">
-                        <a href="#/user/{{website.developerId}}/website/{{website._id}}">
+                        <a href="#/user/{{model.uid}}/website/{{website._id}}">
                             <span class="glyphicon glyphicon-cog pull-right"/>
                         </a>
                             </div>
@@ -64,6 +64,8 @@
         </div>
     <div class="container-fluid col-xs-12 col-sm-12 col-md-7 col-lg-7">
         <form>
+
+            <div ng-show="model.error" class="alert alert-danger" role="alert">{{model.error}}</div>
 
             <div class="form-group">
                 <label for ="webname" >Name</label>
@@ -77,6 +79,8 @@
 
         </form>
     </div>
+
+
 
     <nav class="navbar  navbar-fixed-bottom navbar-fnt">
         <div class="container-fluid">
@@ -96,57 +100,4 @@
     </nav>
 </div>
 
-
-
-    <!--<div class="container-fluid ">
-    <div class=" hidden-xs hidden-sm col-md-5 col-lg-5 ver-line">
-
-        <div class="hidden-xs hidden-sm col-md-10 col-lg-10">
-            <a href ="../views/page/page-list.html">
-                <p class="text-fnt pull-left">Blogging App</p>
-            </a>
-        </div>
-
-        <div class="hidden-xs hidden-sm col-md-2 col-lg-2">
-            <a href ="website-edit.view.client.html">
-                <span class="glyphicon glyphicon-cog pull-left text-fnt "></span>
-            </a>
-        </div>
-
-        <div class="hidden-xs hidden-sm col-md-10 col-lg-10">
-            <a href ="../views/page/page-list.html">
-                <p class="text-fnt pull-left">Address Book App</p>
-            </a>
-        </div>
-
-        <div class="hidden-xs hidden-sm col-md-2 col-lg-2">
-            <a href ="website-edit.view.client.html">
-                <span class="glyphicon glyphicon-cog pull-left text-fnt "></span>
-            </a>
-        </div>
-
-        <div class="hidden-xs hidden-sm col-md-10 col-lg-10">
-            <a href ="../views/page/page-list.html">
-                <p class="text-fnt pull-left">Script Testing App</p>
-            </a>
-        </div>
-
-        <div class="hidden-xs hidden-sm col-md-2 col-lg-2">
-            <a href ="website-edit.view.client.html">
-                <span class="glyphicon glyphicon-cog pull-left text-fnt "></span>
-            </a>
-        </div>
-
-        <div class="hidden-xs hidden-sm col-md-10 col-lg-10">
-            <a href ="../views/page/page-list.html">
-                <p class="text-fnt pull-left">Blogger</p>
-            </a>
-        </div>
-
-        <div class="hidden-xs hidden-sm col-md-2 col-lg-2">
-            <a href ="#/user/{{website.developerId}}/website/{{website._id}}">
-                <span class="glyphicon glyphicon-cog pull-left text-fnt "></span>
-            </a>
-        </div>
-    </div>--->
 

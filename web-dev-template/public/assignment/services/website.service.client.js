@@ -3,88 +3,62 @@
         .module("WebAppMaker")
         .factory("WebsiteService", WebsiteService);
 
-    function WebsiteService() {
-        var websites = [
-                { "_id": "123", "name": "Facebook",    "developerId": "456", "description": "Lorem" },
-                { "_id": "234", "name": "Tweeter",     "developerId": "456", "description": "Lorem" },
-                { "_id": "456", "name": "Gizmodo",     "developerId": "456", "description": "Lorem" },
-                { "_id": "567", "name": "Tic Tac Toe", "developerId": "123", "description": "Lorem" },
-                { "_id": "678", "name": "Checkers",    "developerId": "123", "description": "Lorem" },
-                { "_id": "789", "name": "Chess",       "developerId": "234", "description": "Lorem" }
-            ];
+    function WebsiteService($http) {
+        // var websites = [
+        //     {_id: 321, name: 'facebook.com', uid: 123},
+        //     {_id: 432, name: 'wikipedia.org', uid: 123},
+        //     {_id: 543, name: 'twitter.com', uid: 234}
+        // ];
 
         var api = {
+            findWebsitesForUser: findWebsitesForUser,
             findWebsiteById: findWebsiteById,
-            createWebsite:createWebsite,
-            findWebsiteByUser:findWebsiteByUser,
-            updateWebsite:updateWebsite,
-            deleteWebsite:deleteWebsite
-
+            createWebsite: createWebsite,
+            updateWebsite: updateWebsite,
+            deleteWebsite: deleteWebsite
         };
         return api;
 
 
-        function deleteWebsite(websiteId) {
-
-            for(var u in websites) {
-                website = websites[u];
-                if(website._id === websiteId) {
-                    websites.splice(u,1);
-                }
-            }
+        function gennewId(){
+            newid=Math.floor(new Date().valueOf() * Math.random());
+            return newid;
         }
 
-        function createWebsite(userId, website){
 
-                var newId = getRandomId(0, 10000).toString();
-                website._id = newId;
-                website.developerId = userId;
-                websites.push(website);
-            return website;
+        function deleteWebsite(wid){
+            var url = "/api/website/"+wid;
+            return $http.delete(url);
         }
 
-        function getRandomId(min, max)
-        {
-            min = Math.ceil(min);
-            max = Math.floor(max);
-            newId= Math.floor(Math.random() * (max - min)) + min;
-
-            return (findWebsiteById(newId)) == null ? newId :getRandomId(min, max)
+        function updateWebsite(wid,website) {
+            var url = "/api/website/" + parseInt(wid);
+            return $http.put(url, website);
         }
 
-        function findWebsiteByUser(userId){
-
-            var result = [];
-            for(var w in websites) {
-                if(websites[w].developerId === userId) {
-                    result.push(websites[w]);
-                }
-            }
-            return result;
-
-
+        function createWebsite(uid, website) {
+            var nwebsite = {
+                _id:gennewId(),
+                name: website.name,
+                uid: uid,
+                description: website.description
+            };
+            var url = "/api/user/"+uid+"/website";
+            return $http.post(url, nwebsite);
         }
 
-        function updateWebsite(websiteId, website){
-            old_website=findWebsiteById(websiteId);
-            if (old_website)
-            {
-                old_website.name = website.name;
-                old_website.description = website.description;
-                return true;
-            }
-return false;
-        }
+
 
         function findWebsiteById(wid) {
-            for (var w in websites) {
-                if (websites[w]._id === wid) {
-                    return websites[w];
-                }
-            }
-            return null;
+            var url = "/api/website/"+wid;
+            return $http.get(url);
         }
 
 
+
+        function findWebsitesForUser(uid) {
+            var url = "/api/user/"+uid+"/website";
+            return $http.get(url);
+        }
     }
 })();

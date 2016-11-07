@@ -1,62 +1,48 @@
+<!---
 <nav class="navbar navbar-default navbar-fixed-top  ">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-11 col-xs-10 col-sm-11 col-lg-11">
-                    <p class="navbar-text pull-left">
-                        <a href = "#/user/{{model.uid}}/website/{{model.wid}}/page" class="navbar-link">
-                            <span class="glyphicon glyphicon-chevron-left "></span>
-                        </a>
-
-                    </p>
-                    <a class="navbar-brand">
-                        <span class="  pull-left">Widgets</span>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-11 col-xs-10 col-sm-11 col-lg-11">
+                <p class="navbar-text pull-left">
+                    <a href="#/user/{{model.uid}}/website/{{model.wid}}/page" class="navbar-link">
+                        <span class="glyphicon glyphicon-chevron-left "></span>
                     </a>
-                </div>
 
-                <div class="col-xs-1 col-md-1 col-sm-1 col-lg-1 pull-right">
-                    <p class="navbar-text pull-right">
-                        <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/new" class="navbar-link ">
-                            <span class="glyphicon glyphicon-plus "></span>
-                        </a>
-                    </p>
-                </div>
+                </p>
+                <a class="navbar-brand">
+                    <span class="  pull-left">Widgets</span>
+                </a>
+            </div>
+
+            <div class="col-xs-1 col-md-1 col-sm-1 col-lg-1 pull-right">
+                <p class="navbar-text pull-right">
+                    <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/new"
+                       class="navbar-link ">
+                        <span class="glyphicon glyphicon-plus "></span>
+                    </a>
+                </p>
             </div>
         </div>
-    </nav>
+    </div>
+</nav>
 
-<div class="container">
-    <div class="cogs-pos col-xs-12">
-
+<div class="container" >
+    <div class="cogs-pos col-xs-12" jga-sortable>
         <div ng-repeat="widget in model.widgets">
             <div class="cog-pos">
-            <span class="glyphicon glyphicon-align-justify pull-right gly-style "></span>
+                <span class="glyphicon glyphicon-align-justify pull-right gly-style "></span>
 
-                <a href ng-click="model.editWidget(widget)"  class="navbar-link">
-                <span class="glyphicon glyphicon-cog pull-right text-fnt "></span>
+                <a href ng-click="model.editRedirect(widget)" class="navbar-link">
+                    <span class="glyphicon glyphicon-cog pull-right text-fnt "></span>
 
-            </a>
-                </div>
+                </a>
+            </div>
             <div ng-switch="widget.widgetType">
 
                 <div ng-switch-when="HEADER" ng-switch="widget.size" class="col-xs-12">
-                    <div ng-switch-when="1">
-                        <h1>{{widget.text}}</h1>
-                    </div>
-                    <div ng-switch-when="2">
-                        <h2>{{widget.text}}</h2>
-                    </div>
-                    <div ng-switch-when="3">
-                        <h3>{{widget.text}}</h3>
-                    </div>
-                    <div ng-switch-when="4">
-                        <h4>{{widget.text}}</h4>
-                    </div>
-                    <div ng-switch-when="5">
-                        <h5>{{widget.text}}</h5>
-                    </div>
-                    <div ng-switch-when="6">
-                        <h6>{{widget.text}}</h6>
-                    </div>
+                    <p class="h{{widget.size}}">
+                        {{widget.text}}
+                    </p>
                 </div>
 
                 <div ng-switch-when="HTML" class="col-xs-12">
@@ -65,29 +51,24 @@
                 </div>
 
                 <div ng-switch-when="IMAGE" class="img-rounded col-xs-12">
-                    <img width="{{widget.width}}" src="{{widget.url}}">
+                    <img width="{{widget.width}}" ng-src="{{widget.url}}">
                 </div>
 
                 <div ng-switch-when="YOUTUBE" class="img-rounded col-xs-12">
                     <iframe height="345" ng-src={{model.checkSafeURL(widget.url)}} width={{widget.width}}></iframe>
                 </div>
-                </div>
             </div>
-
-
-
-
-
-
-
+        </div>
+    </div>
+</div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom ">
     <div class="row">
         <div class="col-xs-10 col-md-11 col-sm-11 col-lg-11">
-<div class="row navbar-text">
-            <span class="glyphicon glyphicon-play "></span>
-            <span class="glyphicon glyphicon-eye-open "></span>
-</div>
+            <div class="row navbar-text">
+                <span class="glyphicon glyphicon-play "></span>
+                <span class="glyphicon glyphicon-eye-open "></span>
+            </div>
         </div>
         <div class="col-xs-2 col-md-1 col-sm-1 col-lg-1 pull-right">
             <div class="container">
@@ -100,113 +81,88 @@
         </div>
     </div>
 </nav>
+-->
 
-<!---
-    <div class="container">
-        <div class="cogs-pos">
-            <span class="glyphicon glyphicon-align-justify pull-right gly-style "></span>
-            <a href="widget-heading.view.client.html">
-            <span class="glyphicon glyphicon-cog pull-right text-fnt "></span>
-            </a>
-        </div>
-            <p><b>GIZMODO</b></p>
-
-        <div class="cogs-pos">
-            <span class="glyphicon glyphicon-align-justify pull-right gly-style "></span>
-            <span class="glyphicon glyphicon-cog pull-right text-fnt "></span>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-10 col-sm-11 col-md-11 col-lg-11">
+                <p class="navbar-text pull-left">
+                    <a href="#/user/{{model.uid}}/website/{{model.wid}}/page">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                    </a>
+                </p>
+                <span class="navbar-brand pull-left">Widgets</span>
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <p class="navbar-text pull-right">
+                    <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/new">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </a>
+                </p>
+            </div>
         </div>
     </div>
-        <div class="container">
+</nav>
 
-    <p class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
+<div class="container-fluid topMargin">
+    <div class="container-fluid" jga-sortable>
+        <div ng-repeat="widget in model.widgets" class="row topMargin widget-Pos">
+            <div ng-switch="widget.widgetType">
+                <div ng-switch-when="HEADER" class="col-xs-12">
+                    <p class="h{{widget.size}}">
+                        {{widget.text}}
+                    </p>
+                </div>
 
-           <b>US senate reaches compromise on emergency zika funding</b>
+                <div ng-switch-when="HTML" class="col-xs-12">
+                    <div ng-bind-html="model.getSafeHtml(widget.text)">
+                    </div>
+                </div>
 
-    </p>
+                <div ng-switch-when="IMAGE" class="img-rounded col-xs-12">
+                    <img width="{{widget.width}}" ng-src="{{widget.url}}">
+                </div>
 
-    <div class="cogs-pos">
-        <span class="glyphicon glyphicon-align-justify pull-right gly-style "></span>
-        <span class="glyphicon glyphicon-cog pull-right text-fnt "></span>
+                <div ng-switch-when="YOUTUBE" class="img-rounded col-xs-12">
+                    <iframe height="345" ng-src={{model.checkSafeURL(widget.url)}} width={{widget.width}}></iframe>
+                </div>
+            </div>
+            <div class="row">
+                <div class=" col-xs-2 col-sm-2 col-mid-1 col-lg-1 col-xs-offset-10 col-sm-offset-10 col-mid-offset-11 col-lg-offset-11 up">
+                    <div class="pull-right widget-style">
+                        <a href ng-click="model.editRedirect(widget)" class="navbar-link">
+                            <span class="glyphicon glyphicon-cog"/>
+                        </a>
+                        <span class="glyphicon glyphicon-align-justify"/>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
-    <div class="container ">
-        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 ">
-            <img src = "/assignment/giz.png"  width = "100%">
-        </div>
-
-        <div class="cogs-pos">
-        <span class="glyphicon glyphicon-align-justify pull-right gly-style "></span>
-            <a href="widget-image.view.client.html">
-        <span class="glyphicon glyphicon-cog pull-right text-fnt "></span>
-            </a>
-        </div>
-
-    </div>
-
-<div class="container">
-<p class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
-
-    In February, the White House formally asked Congress for $1.8 billion dollars to help combat the Zika virus this summer. Now, the Senate has worked out a bipartisan deal will allocate $1.1 billion in emergency funding.
-
-
-</p>
-
-<div class="cogs-pos">
-    <span class="glyphicon glyphicon-align-justify pull-right gly-style "></span>
-    <span class="glyphicon glyphicon-cog pull-right text-fnt "></span>
-</div>
-</div>
-
-
-    <div class="container">
-    <p class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
-
-        <b>Man in Wingsuit flies straight through a Ring of fire</b>
-
-    </p>
-
-    <div class="cogs-pos">
-        <span class="glyphicon glyphicon-align-justify pull-right gly-style "></span>
-        <span class="glyphicon glyphicon-cog pull-right text-fnt "></span>
-    </div>
-    </div>
-
-    <div class="container ">
-        <div class="cogs-pos">
-            <span class="glyphicon glyphicon-align-justify pull-right gly-style "></span>
-            <a href="widget-youtube.view.client.html">
-            <span class="glyphicon glyphicon-cog pull-right text-fnt "></span>
-                </a>
-        </div>
-        <div align="center" >
-                <iframe src="//www.youtube.com/embed/uLWLashCXHE" class="embed-responsive-item" width = "100%">
-                    </iframe>
-        </div>
-
-        <div class="cogs-pos">
-            <span class="glyphicon glyphicon-align-justify pull-right gly-style "></span>
-            <a href="widget-youtube.view.client.html">
-            <span class="glyphicon glyphicon-cog pull-right text-fnt "></span>
-            </a>
-        </div>
-
-    </div>
-
-
-
-
-    <div class="container">
-        <p class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
-
-        Flying in a wingsuit? That’s just not enough anymore. Anyone could do that (I would never do that). You have to make it more extreme, like by hitting a target while you’re cutting through the air at crazy speeds. Or by making that target a small ring that you have to somehow fly through. Or by lighting that ring on fire. Or by... actually, that should be extreme enough for now.
-
-        </p>
-
-        <div class="cogs-pos">
-            <span class="glyphicon glyphicon-align-justify pull-right gly-style "></span>
-            <span class="glyphicon glyphicon-cog pull-right text-fnt "></span>
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-10 col-sm-11 col-md-11 col-lg-11">
+                <p class="navbar-text">
+                    <a href="#" class="navbar-link rightMargin">
+                        <span class="glyphicon glyphicon-play"/>
+                    </a>
+                    <a href="#" class="navbar-link">
+                        <span class="glyphicon glyphicon-eye-open"/>
+                    </a>
+                </p>
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <p class="navbar-text pull-right">
+                    <a href="#/user/{{model.uid}}">
+                        <span class="glyphicon glyphicon-user"></span>
+                    </a>
+                </p>
+            </div>
         </div>
     </div>
+</nav>
 
---->

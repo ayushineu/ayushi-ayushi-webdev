@@ -1,9 +1,9 @@
-(function() {
+(function () {
     angular
         .module("WebAppMaker")
-        .controller("NewWebsiteController",NewWebsiteController)
-        .controller("WebsiteListController",WebsiteListController)
-        .controller("EditWebsiteController",EditWebsiteController);
+        .controller("NewWebsiteController", NewWebsiteController)
+        .controller("WebsiteListController", WebsiteListController)
+        .controller("EditWebsiteController", EditWebsiteController);
 
 
     function NewWebsiteController($routeParams, WebsiteService, $location) {
@@ -12,29 +12,40 @@
         web.uid = $routeParams.uid;
         web.createNewWebsite = createNewWebsite;
 
-        function init(){
-            web.websites = WebsiteService.findWebsiteByUser(web.uid);
-            console.log(web.websites);
+        function init() {
+            var promise = WebsiteService.findWebsitesForUser(web.uid)
+            promise
+                .success(function (weblist) {
+                    web.websites = weblist;
+                })
+                .error(function (err) {
+                    web.error = "Some error occurred";
+
+                });
+
         }
+
         init();
 
-        function createNewWebsite(newWebsite){
-            if(newWebsite.name )
-            {
+        function createNewWebsite(newWebsite) {
+            if (newWebsite != null) {
 
-                var newCreatedWebsite = WebsiteService.createWebsite($routeParams.uid, newWebsite);
-                console.log(newCreatedWebsite);
-                if (newCreatedWebsite) {
-                    $location.url("/user/" + $routeParams.uid +"/website");
-                }
-                else {
-                    web.error = "Error. Please try again."
-                }
+                var promise = WebsiteService.createWebsite($routeParams.uid, newWebsite);
+                console.log(promise);
+                promise
+                    .success(function (newWebsite) {
+
+                        $location.url("/user/" + $routeParams.uid + "/website");
+
+                    })
+                    .error(function (err) {
+                        web.error = "Error. Please try again."
+                    })
 
 
             }
-            else{
-                web.error="Please enter the Name of the website";
+            else {
+                web.error = "Please enter the Name of the website";
             }
 
         }
@@ -46,14 +57,17 @@
         var web = this;
         web.uid = $routeParams.uid;
 
-        function init(){
-            web.websites = WebsiteService.findWebsiteByUser(web.uid);
-            console.log(web.websites);
+        function init() {
+            var promise = WebsiteService.findWebsitesForUser(web.uid);
+            promise
+                .success(function (websitelist) {
+                    web.websites = websitelist;
+                })
         }
+
         init();
 
     }
-
 
 
     function EditWebsiteController($routeParams, WebsiteService, $location) {
@@ -65,37 +79,46 @@
         web.updateWebsite = updateWebsite;
 
         function init() {
-            web.websites = WebsiteService.findWebsiteByUser(web.uid);
+            WebsiteService.findWebsitesForUser(web.uid)
+                .success(function (websitelist) {
+                    web.websites = websitelist;
+                })
+                .error(function (err) {
+                    web.error = "Something went wrong";
+                });
+
+            WebsiteService.findWebsiteById(web.wid)
+                .success(function (webi) {
+                    web.newWebsite = webi;
+                })
+                .error(function (err) {
+                    web.error = "Something went wrong";
+                });
         }
         init();
 
-        var webi = WebsiteService.findWebsiteById(web.wid);
-        if (webi != null) {
-            web.website = webi;
+        function deleteWebsite() {
+            WebsiteService.deleteWebsite(web.wid)
+                .success(function (aaa) {
+                    $location.url("/user/" + $routeParams.uid + "/website");
+                })
+                .error(function (err) {
+                    web.error = "Error.Please try again."
+                });
         }
 
-        function deleteWebsite(websiteId) {
-            var result = WebsiteService.deleteWebsite(websiteId);
-
-
-            if (result != null) {
-                $location.url("/user/" + $routeParams.uid + "/website");
-            }
-            else {
-                web.error = "Error.Please try again."
-            }
-
-        }
         function updateWebsite(webId, newWebsite) {
-            var nWebsite = WebsiteService.updateWebsite(webId, newWebsite);
-            console.log(nWebsite);
-            if (nWebsite) {
-                $location.url("/user/" + $routeParams.uid + "/website");
+            if (web.newWebsite.name != null && web.newWebsite.name != "") {
+                WebsiteService.updateWebsite(web.wid, web.newWebsite)
+                    .then(function (response) {
+                        $location.url("/user/" + web.uid + "/website");
+                    }, function (error) {
+                        web.error = "Failed to update website";
+                    });
             }
             else {
-                web.error = "Website id does not match"
+                web.error = "Please give a website name";
             }
         }
     }
-
 })();

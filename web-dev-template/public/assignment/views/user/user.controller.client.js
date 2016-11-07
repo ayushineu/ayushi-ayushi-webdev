@@ -10,55 +10,86 @@
         vm.login = login;
 
         function login(username, password) {
-            var user = UserService.findUserByCredentials(username, password);
-            if (user === null) {
-                vm.error = "No such user";
-            }
-            else
-                $location.url("/user/" + user._id);
+            var promise = UserService.findUserByCredentials(username, password);
+            promise
+                .success(function(user){
+                    if(user === '0') {
+                        vm.error = "No such user";
+                    } else {
+                        $location.url("/user/" + user._id);
+                    }
+                })
+                .error(function(bbbb){
+                    console.log(bbbb);
+                });
+        }}
+
+    function ProfileController($location, $routeParams, UserService) {
+        var vm = this;
+
+        var userId = parseInt($routeParams.uid);
+
+        vm.updateUser = updateUser;
+        vm.unregisterUser = unregisterUser;
+
+        function init() {
+            UserService
+                .findUserById(userId)
+                .success(function(user){
+                    if(user != '0') {
+                        vm.user = user;
+                    }
+                })
+                .error(function(){
+
+                });
+        }
+        init();
+
+        function updateUser() {
+            UserService.updateUser(vm.user);
+        }
+
+        function unregisterUser() {
+            UserService
+                .unregisterUser(vm.user._id)
+                .success(function(){
+                    $location.url("/login");
+                })
+                .error(function(){
+
+                });
         }
     }
 
-    function ProfileController(UserService, $routeParams) {
 
+    function RegisterController(UserService, $location) {
         var vm = this;
-        vm.updateUser = updateUser;
+        vm.createNewUser = createNewUser;
 
-        var userId = $routeParams.uid;
-        var user = UserService.findUserById(userId);
+        function createNewUser(user) {
 
-        if (user != null) {
-            vm.user = user;
-        }
+            if (user.password == user.verifypassword) {
+                var UserPromise = UserService.findUserByUsername(user.username);
 
-        function updateUser(newUser) {
-            var nUser = UserService.updateUser(userId, newUser);
-            if (nUser) {
-                vm.success = "User Updated"
+                UserPromise
+                    .success(function (user) {
+                        vm.error = "User already exists. Please try a different username";
+                    })
+                    .error(function (err) {
+                        console.log("create new "+user);
+                        var promise = UserService.createUser(user);
+                        promise
+                            .success(function (user) {
+                                $location.url("/user/" + user._id);
+                            })
+                            .error(function (err) {
+                                vm.error = "Failed to create user. Please try again!!"
+                            });
+                    });
             }
             else {
-                vm.error = "User already exists"
-            }
-
-        }
-    }
-
-    function RegisterController($location, UserService) {
-        var vm = this;
-        vm.register = register;
-
-        function register(newUser) {
-            if (newUser.password === newUser.vPassword){
-                var newlyCreatedUser = UserService.createUser(newUser);
-                if (newlyCreatedUser) {
-                    $location.url("/user/" + newlyCreatedUser._id);
-                }
-                else {
-                    vm.error = "Username already exists."
-                }
-            }
-            else{
-                vm.error= "Passwords do not match"
+                vm.error = "Passwords do not match!!"
             }
         }
     }

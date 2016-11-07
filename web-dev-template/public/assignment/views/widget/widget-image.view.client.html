@@ -29,7 +29,7 @@
 </nav>
 
 <div class="container">
-<form>
+<form action="/api/upload"  method="post" enctype="multipart/form-data">
     <div class="form-group">
         <label >Name</label>
         <input ng-model="model.widget.name" type="text" class="form-control" id="wname" value={{model.widget.name}}>
@@ -49,15 +49,19 @@
     </div>
 
     <div class="form-group">
-        <label >Upload</label>
-        <input type="file" class="form-control" placeholder ="No file chosen">
+        <label for="widgetUpload">Upload</label>
+        <input  name="myFile"  id="widgetUpload" type="file" class="form-control"/>
+        <input  name="width"    value="{{model.widget.width}}" style="display: none"/>
+        <input  name="widgetId" value="{{model.widget._id}}"   style="display: none"/>
+        <input  name="userId" value="{{model.uid}}"   style="display: none"/>
+        <input  name="websiteId" value="{{model.wid}}"   style="display: none"/>
+        <input  name="pageId" value="{{model.pid}}"   style="display: none"/>
+        <button type="submit" class="btn btn-block btn-primary">Upload Image</button>
     </div>
-    <button type="submit" class="btn btn-primary btn-block">Upload Image</button>
+
     <a class="btn btn-danger  btn-block" href ng-click="model.deleteWidget(model.widget)">Delete</a>
 </form>
-    <div ng-show="model.error" class="alert alert-danger" role="alert">
-        {{model.error}}
-    </div>
+
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom ">

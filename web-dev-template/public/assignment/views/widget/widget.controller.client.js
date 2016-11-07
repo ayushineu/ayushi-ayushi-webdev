@@ -12,9 +12,13 @@
         vm.wid = $routeParams.wid;
         vm.checkSafeURL = checkSafeURL;
         vm.getSafeHtml = getSafeHtml;
-        vm.editWidget = editWidget;
+        vm.editRedirect = editRedirect;
         function init() {
-            vm.widgets = WidgetService.findWidgetsByPageId(vm.pid);
+            console.log("list widgets");
+             WidgetService.findWidgetsByPageId(vm.pid)
+                 .success(function(widgetlist){
+                     vm.widgets =widgetlist;
+                 })
 
         }
         init();
@@ -33,10 +37,10 @@
         }
 
 
-        function editWidget(w){
-            console.log(w);
+        function editRedirect(w){
+            if (w.widgetType != "HTML"){
             $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page/" + vm.pid + "/widget/" + w._id);
-        }
+        }}
     }
 
     function NewWidgetController($location ,$routeParams, WidgetService){
@@ -53,56 +57,68 @@
 
         function createWidget(newWidgetType){
 
-            var newWidget = WidgetService.createWidget(vm.pid, newWidgetType);
-console.log(newWidget);
-            if (newWidget) {
+            WidgetService.createWidget(vm.pid, newWidgetType)
+                .success(function(newWidget){
+                    console.log(newWidget._id);
+                    $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page/" + vm.pid + "/widget/" + newWidget._id);
+                })
+                .error(function(err){
+                    vm.error = "Error. Please try again..";
+                });
 
-                $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page/" + vm.pid + "/widget/" + newWidget._id);
-            }
-            else {
-                vm.error = "Error. Please try again..";
             }
 
-        }
+
     }
-    function EditWidgetController($routeParams, WidgetService){
+    function EditWidgetController($routeParams, WidgetService, $location){
         var vm = this;
         vm.wid = $routeParams.wid;
         vm.uid = $routeParams.uid;
         vm.pid = $routeParams.pid;
         vm.wgid = $routeParams.wgid;
         vm.updateWidget = updateWidget;
-        vm.deleteWidget = vm.deleteWidget;
+        vm.deleteWidget = deleteWidget;
 
         function init() {
-            vm.widget = WidgetService.findWidgetById(vm.wgid);
+            console.log(vm.wgid);
+
+             WidgetService.findWidgetById(vm.wgid)
+                 .success(function(fwidget){
+                     vm.widget=fwidget;
+                 })
 
         }
         init();
 
-        function deleteWidget() {
-            var res = WidgetService.deleteWidget(vm.wgid);
-            if (res) {
-                $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page/" + vm.pid + "/widget");
-            } else {
-                vm.error = "Something went wrong.Please try again.";
+        function deleteWidget(widgetdel) {
+            console.log("atleast here");
+            WidgetService.deleteWidget(widgetdel._id)
+                .success(function(res){
+                    console.log("in del funct");
+                    $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page/" + vm.pid + "/widget");
+                })
+
+                .error(function(err)
+                {
+                    vm.error = "Error Please try again.";
+                });
+
             }
+
+
+        function updateWidget(newwidget){
+
+            WidgetService.updateWidget(vm.wgid,vm.widget)
+                .success(function(aa){
+                    console.log("in widget update "+vm.widget);
+                    $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page/" + vm.pid + "/widget");
+                })
+
+                .error(function(err){
+                    console.log("in widget update error");
+                    vm.error ="Error.Please try again.";
+                });
         }
-
-        function updateWidget(newWidget){
-            var res = WidgetService.updateWidget(newWidget);
-
-            if(res){
-                $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page/" + vm.pid + "/widget");
-            }
-            else{
-                vm.error ="Something went wrong.Please try again.";
-            }
-
-        }
-
-
-
     }
 
 })();
