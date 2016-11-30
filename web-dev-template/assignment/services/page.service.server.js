@@ -1,11 +1,12 @@
-module.exports = function (app) {
+module.exports = function (app,model) {
 
+    /*
     var pages = [
 
         { _id: "321", name: "Post 1", websiteId: "456", description: "Lorem" },
         { _id: "432", name: "Post 2", websiteId: "456", description: "Lorem" },
         { _id: "543", name: "Post 3", websiteId: "456", description: "Lorem" }
-    ];
+    ];*/
 
     app.post("/api/website/:websiteId/page", createPage);
     app.get("/api/website/:websiteId/page", findAllPagesForWebsite);
@@ -13,66 +14,103 @@ module.exports = function (app) {
     app.put("/api/page/:pageId", updatePage);
     app.delete("/api/page/:pageId", deletePage);
 
-    function createPage(req, res) {
+    function createPage(req, res)
+    {
         var npage = req.body;
-        pages.push(npage);
-        res.sendStatus(200);
+        var websiteId = req.params.websiteId;
+
+        model
+            .pageModel
+            .createPage(websiteId, npage)
+            .then(function (npage)
+                {
+                    res.send(npage);
+                },
+                function (err)
+                {
+                    res.sendStatus(400).send(err);
+                });
+
     }
 
-    function findAllPagesForWebsite(req,res){
+    function findAllPagesForWebsite(req,res)
+    {
 
         var websiteId = req.params.websiteId;
 
-        var result = [];
-
-        for(var p in pages){
-
-            var page = pages[p];
-
-            if(page.websiteId === websiteId){
-                result.push(page);
-            }
-        }
-
-        res.send(result);
+        model
+            .pageModel
+            .findAllPagesForWebsite(websiteId)
+            .then
+            (
+                function (pages)
+                {
+                    res.json(pages);
+                },
+                function (err)
+                {
+                    res.sendStatus(400).send(err);
+                }
+            );
 
     }
 
-    function findPageById(req, res) {
+    function findPageById(req, res)
+    {
         var pid = req.params.pageId;
-        var response = '0';
-        for (var p in pages) {
-            if (pages[p]._id.toString() === pid.toString()) {
-                response = pages[p];
-            }
-        }
-        res.send(response);
+        model
+            .pageModel
+            .findPageById(pid)
+            .then
+            (
+                function (page)
+                {
+                    res.json(page);
+                },
+                function (err)
+                {
+                    res.sendStatus(400).send(err);
+                }
+            );
     }
 
-    function updatePage(req, res) {
+    function updatePage(req, res)
+    {
         console.log("in here update 1");
         var page = req.body;
         var pid = req.params.pageId;
-        var response = 400;
-        for (var p in pages) {
-
-            if (pages[p]._id === pid.toString()) {
-                pages[p] = page;
-                console.log("in here update 2");
-                response = 200;
-                break;
-            }
-        }
-        res.sendStatus(response);
+        model
+            .pageModel
+            .updatePage(pid, page)
+            .then
+            (
+                function (status)
+                {
+                    res.sendStatus(200);
+                },
+                function (error)
+                {
+                    res.sendStatus(400).send(error);
+                }
+            );
     }
 
-    function deletePage(req, res) {
+    function deletePage(req, res)
+    {
         var pid = req.params.pageId;
-        for (var p in pages) {
-            if (pages[p]._id.toString() == pid.toString()) {
-                pages.splice(p, 1);
-            }
-        }
-        res.sendStatus(200);
+        model
+            .pageModel
+            .deletePage(pid)
+            .then
+            (
+                function (status)
+                {
+                    res.sendStatus(200);
+                },
+                function (error)
+                {
+                    res.sendStatus(400).send(error);
+                }
+            );
     }
 }

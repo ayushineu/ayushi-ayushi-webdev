@@ -18,10 +18,12 @@
             {
                 var promise = PageService.createPage(webId, newPage);
                 promise
-                    .success(function(nCreatedPage){
+                    .success(function(nCreatedPage)
+                    {
                         $location.url("/user/" + userId + "/website/" + webId + "/page");
                     })
-                    .error(function(err){
+                    .error(function(err)
+                    {
                         vm.error = "Error.Please try again."
                     });
             }
@@ -70,7 +72,7 @@
             PageService.updatePage(pageId, newPage)
                 .success(function(res){
                     $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page");
-                    console.log("in here update rtyu");
+                    console.log("in here update page");
                 })
                 .error(function(err){
                     vm.error = "Page id does not match";

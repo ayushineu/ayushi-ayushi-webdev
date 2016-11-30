@@ -15,11 +15,15 @@
         vm.editRedirect = editRedirect;
         function init() {
             console.log("list widgets");
-             WidgetService.findWidgetsByPageId(vm.pid)
-                 .success(function(widgetlist){
-                     vm.widgets =widgetlist;
-                 })
-
+            WidgetService.findWidgetsByPageId(vm.pid)
+                .success(function (foundWidgets)
+                {
+                    vm.widgets = foundWidgets;
+                })
+                .error(function (err)
+                {
+                    vm.error = "Error. Please try again";
+                });
         }
         init();
 
@@ -38,9 +42,8 @@
 
 
         function editRedirect(w){
-            if (w.widgetType != "HTML"){
             $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page/" + vm.pid + "/widget/" + w._id);
-        }}
+        }
     }
 
     function NewWidgetController($location ,$routeParams, WidgetService){
@@ -49,27 +52,34 @@
         vm.wid = $routeParams.wid;
         vm.pid = $routeParams.pid;
         vm.wgid = $routeParams.wgid;
-        vm.createYoutube = {"widgetType": "YOUTUBE",  "width": "" , "url": "" };
-        vm.createHeader ={ "_id": "", "widgetType": "HEADER",  "size": "", "text": ""};
-        vm.createImage= { "_id": "", "widgetType": "IMAGE", "width":"", "url": ""};
+        vm.createYoutube = {name:"Youtube Widget", type: "YOUTUBE", width: "100%", url: ""};
+        vm.createHeader ={ name:"Header Widget", type: "HEADER", size: 2, text: "New Header Text"};
+        vm.createImage= { name:"Image Widget", type: "IMAGE", width: "100%", url: ""};
+        vm.createHTML = {name:"HTML Widget", type: "HTML",text:""};
+        vm.createTEXT = {name:"Text Input Widget", type: "INPUT",formatted: false,rows: 1,placeholder:"",text:""};
         vm.createWidget = createWidget;
 
 
-        function createWidget(newWidgetType){
+        function createWidget(newWidgetType)
+        {
 
             WidgetService.createWidget(vm.pid, newWidgetType)
-                .success(function(newWidget){
+                .success(function(newWidget)
+                {
                     console.log(newWidget._id);
                     $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page/" + vm.pid + "/widget/" + newWidget._id);
                 })
-                .error(function(err){
-                    vm.error = "Error. Please try again..";
+                .error(function(err)
+                {
+                    console.log("ERROR in create widget");
+                    vm.error = "Error. Please try again.";
                 });
 
             }
-
-
     }
+
+
+
     function EditWidgetController($routeParams, WidgetService, $location){
         var vm = this;
         vm.wid = $routeParams.wid;
@@ -104,6 +114,7 @@
                 });
 
             }
+
 
 
         function updateWidget(newwidget){

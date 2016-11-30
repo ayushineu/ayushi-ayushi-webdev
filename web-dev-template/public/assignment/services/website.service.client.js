@@ -11,7 +11,7 @@
         // ];
 
         var api = {
-            findWebsitesForUser: findWebsitesForUser,
+            findWebsitesByUser: findWebsitesByUser,
             findWebsiteById: findWebsiteById,
             createWebsite: createWebsite,
             updateWebsite: updateWebsite,
@@ -19,6 +19,52 @@
         };
         return api;
 
+
+
+        function createWebsite(userId, website)
+        {
+            var url = "/api/user/" + userId + "/website";
+
+            var newWebsite =
+            {
+                name: website.name,
+                _user: userId,
+                description: website.description
+            };
+
+            return $http.post(url, newWebsite);
+        }
+
+
+        function findWebsitesByUser(userId)
+        {
+            var url = "/api/user/" + userId + "/website";
+            return $http.get(url);
+        }
+
+
+        function findWebsiteById(websiteId)
+        {
+            var url = "/api/website/" + websiteId;
+            return $http.get(url);
+        }
+
+
+        function updateWebsite(websiteId, website)
+        {
+            var url = "/api/website/" + websiteId;
+            return $http.put(url, website);
+        }
+
+
+        function deleteWebsite(websiteId)
+        {
+            var url = "/api/website/" + websiteId;
+            return $http.delete(url);
+        }
+    }
+})();
+        /*
 
         function gennewId(){
             newid=Math.floor(new Date().valueOf() * Math.random());
@@ -61,4 +107,4 @@
             return $http.get(url);
         }
     }
-})();
+})();*/
