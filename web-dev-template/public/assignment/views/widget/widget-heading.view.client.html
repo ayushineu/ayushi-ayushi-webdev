@@ -19,8 +19,13 @@
             <div class="col-md-1 col-xs-1 col-sm-1 col-lg-1"></div>
             <div class="col-xs-1 col-md-1 col-sm-1 col-lg-1">
                 <p class="navbar-text">
+<<<<<<< HEAD
                     <a href="javascript:$('#updateWidget').click()">
                         <span class="glyphicon glyphicon-ok"></span>
+=======
+                    <a ng-click="model.updateWidget(model.widget)" class="navbar-link">
+                        <span class="glyphicon glyphicon-ok pull-right "></span>
+>>>>>>> origin/master
                     </a>
                 </p>
             </div>
@@ -29,6 +34,7 @@
 </nav>
 
 <div class="container">
+<<<<<<< HEAD
 
     <div ng-show="!model.error && widgetForm.$submitted && widgetForm.$invalid" class="alert alert-danger"
          role="alert">
@@ -48,6 +54,13 @@
         <div ng-show="widgetForm.$submitted && widgetForm.widgetName.$invalid" class="formFieldErrorMsg">
             Widget Name is a required field
         </div>
+=======
+<form>
+
+    <div class="form-group">
+        <label >Name</label>
+        <input ng-model="model.widget.name" type="text" class="form-control" id="name" value={{model.widget.name}}>
+>>>>>>> origin/master
     </div>
     <div class="form-group">
         <label >Text</label>
@@ -58,11 +71,12 @@
         <input ng-model="model.widget.size" type="number" class="form-control"  value={{model.widget.size}}>
     </div>
     <a ng-click="model.deleteWidget(model.widget)" class="btn btn-danger  btn-block">Delete</a>
+<<<<<<< HEAD
     <button id="updateWidget" type="submit" class="btn btn-primary btn-block" style="display: none;">Update Widget</button>
+=======
+>>>>>>> origin/master
 </form>
-    <div ng-show="model.error" class="alert alert-danger" role="alert">
-        {{model.error}}
-    </div>
+
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom ">

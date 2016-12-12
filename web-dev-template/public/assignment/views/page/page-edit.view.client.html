@@ -32,16 +32,23 @@
 <form name="myForm">
     <div class="form-group">
         <label for ="name">Name</label>
+<<<<<<< HEAD
         <input id="name" ng-model="model.currentpage.name"  required
                ng-class="{ 'error-when' : submitted && myForm.model.currentpage.name.$error.required }"
                type="text" class="form-control" id="name" >
+=======
+        <input id="name" ng-model="model.currentpage.name" type="text" class="form-control" id="name" >
+>>>>>>> origin/master
     </div>
     <div class="form-group">
         <label for = "title">Title</label>
         <input id="title" ng-model="model.currentpage.title" type="text" class="form-control" id="title" placeholder="Page Title">
+<<<<<<< HEAD
         <span ng-show="submitted && myForm.model.page.name.$error.required" class="err">
                     *Required Field
                 </span>
+=======
+>>>>>>> origin/master
     </div>
     <a class="btn btn-danger  btn-block" ng-click="model.deletePage(model.currentpage._id)">Delete</a>
 </form>

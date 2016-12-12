@@ -7,6 +7,7 @@ module.exports = function(app,model) {
         {username: 'jannunzi', password: 'jannunzi',_id: 456, first: 'Jose', last: 'Annunzi'}
     ];*/
 
+<<<<<<< HEAD
     var passport = require('passport');
     var LocalStrategy = require('passport-local').Strategy;
     passport.serializeUser(serializeUser);
@@ -217,6 +218,14 @@ module.exports = function(app,model) {
     function login(req, res) {
         res.json(req.user);
     }
+=======
+    app.post('/api/user', createUser);
+    app.get('/api/user', findUser);
+    app.get('/api/user/:uid', findUserById);
+    app.put('/api/user/:uid', updateUser);
+    app.delete('/api/user/:uid', deleteUser);
+
+>>>>>>> origin/master
 
     function deleteUser(req, res)
     {
@@ -279,6 +288,7 @@ module.exports = function(app,model) {
 
     function findUserById(req, res)
     {
+<<<<<<< HEAD
         var userId = req.params.userId;
 
         userFound = '0';
@@ -298,6 +308,31 @@ module.exports = function(app,model) {
                 function (error) {
                     res.sendStatus(400).send(error);
                 });
+=======
+        var userid = req.params.uid;
+
+        model
+            .userModel
+            .findUserById(userid)
+            .then
+            (
+                function (user)
+                {
+                    if (user)
+                    {
+                        res.send(user);
+                    }
+                    else
+                        {
+                        res.send('0');
+                        }
+                },
+                function (error)
+                {
+                    res.sendStatus(400).send(error);
+                }
+            );
+>>>>>>> origin/master
     }
 
 
@@ -306,7 +341,10 @@ module.exports = function(app,model) {
         var query = req.query;
         if (query.username)
         {
+<<<<<<< HEAD
             console.log("in find user by username");
+=======
+>>>>>>> origin/master
             findUserByUsername(req, res);
         }
         else if ( query.username && query.password)
@@ -319,9 +357,12 @@ module.exports = function(app,model) {
     function findUserByUsername(req, res)
     {
         var username = req.query.username;
+<<<<<<< HEAD
         //req.params.uid
         console.log("found user by username in service server");
         console.log(username);
+=======
+>>>>>>> origin/master
 
         model
             .userModel

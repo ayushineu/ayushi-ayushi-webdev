@@ -10,8 +10,12 @@ module.exports = function () {
         updateUser: updateUser,
         setModel: setModel,
         findUserByCredentials: findUserByCredentials,
+<<<<<<< HEAD
         deleteUser: deleteUser,
         findUserByFacebookId: findUserByFacebookId
+=======
+        deleteUser: deleteUser
+>>>>>>> origin/master
     };
     return api;
 
@@ -20,10 +24,13 @@ module.exports = function () {
         model = _model;
     }
 
+<<<<<<< HEAD
     function findUserByFacebookId(facebookId) {
         return UserModel.findOne({'facebook.id': facebookId});
     }
 
+=======
+>>>>>>> origin/master
 
     function createUser(user)
     {
@@ -34,7 +41,26 @@ module.exports = function () {
     {
         console.log("came to find user from website model");
         console.log(userId);
+<<<<<<< HEAD
         UserModel.findById(userId).then(function(suc){console.log(suc)});
+=======
+        //var por = UserModel.findById(userId);
+        //console.log(por);
+
+        UserModel.find({_id: userId}, function(err, saved){
+            if( err || !saved )
+            {
+                console.log("No user found");
+            }
+            else
+                {
+                console.log("User found");
+
+            }
+
+        });
+
+>>>>>>> origin/master
         return UserModel.findById(userId);
     }
 

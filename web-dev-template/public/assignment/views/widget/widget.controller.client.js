@@ -48,6 +48,7 @@
 
     function NewWidgetController($location ,$routeParams, WidgetService){
         var vm = this;
+<<<<<<< HEAD
         function init() {
             vm.uid = $routeParams.uid;
             vm.wid = $routeParams.wid;
@@ -66,6 +67,17 @@
                 text: ""
             };
         } init();
+=======
+        vm.uid = $routeParams.uid;
+        vm.wid = $routeParams.wid;
+        vm.pid = $routeParams.pid;
+        vm.wgid = $routeParams.wgid;
+        vm.createYoutube = {name:"Youtube Widget", type: "YOUTUBE", width: "100%", url: ""};
+        vm.createHeader ={ name:"Header Widget", type: "HEADER", size: 2, text: "New Header Text"};
+        vm.createImage= { name:"Image Widget", type: "IMAGE", width: "100%", url: ""};
+        vm.createHTML = {name:"HTML Widget", type: "HTML",text:""};
+        vm.createTEXT = {name:"Text Input Widget", type: "INPUT",formatted: false,rows: 1,placeholder:"",text:""};
+>>>>>>> origin/master
         vm.createWidget = createWidget;
 
 
@@ -101,14 +113,22 @@
         function init() {
             console.log(vm.wgid);
 
+<<<<<<< HEAD
             WidgetService.findWidgetById(vm.wgid)
                 .success(function(fwidget){
                     vm.widget=fwidget;
                 })
+=======
+             WidgetService.findWidgetById(vm.wgid)
+                 .success(function(fwidget){
+                     vm.widget=fwidget;
+                 })
+>>>>>>> origin/master
 
         }
         init();
 
+<<<<<<< HEAD
 
         function deleteWidget(widgetdel) {
             console.log("atleast here");
@@ -178,6 +198,25 @@
 
         //
         //
+=======
+        function deleteWidget(widgetdel) {
+            console.log("atleast here");
+            WidgetService.deleteWidget(widgetdel._id)
+                .success(function(res){
+                    console.log("in del funct");
+                    $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page/" + vm.pid + "/widget");
+                })
+
+                .error(function(err)
+                {
+                    vm.error = "Error Please try again.";
+                });
+
+            }
+
+
+
+>>>>>>> origin/master
         function updateWidget(newwidget){
 
             WidgetService.updateWidget(vm.wgid,vm.widget)

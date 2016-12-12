@@ -11,6 +11,7 @@
 
 
         function login(username, password) {
+<<<<<<< HEAD
             var promise = UserService.login(username,password);
             promise
                 .success(function (user) {
@@ -25,6 +26,28 @@
     }
 
     function ProfileController($routeParams, UserService, $location,$rootScope) {
+=======
+            var promise = UserService.findUserByCredentials(username, password);
+            promise
+                .success(function (user) {
+                        if (user === '0') {
+                            vm.error = "No such user";
+                        }
+                        else {
+                            $location.url("/user/" + user._id);
+                        }
+                    }
+                )
+                .error
+                (function (bbbb) {
+                        console.log(bbbb);
+                    }
+                );
+        }
+    }
+
+    function ProfileController($routeParams, UserService, $location) {
+>>>>>>> origin/master
 
         var vm = this;
         vm.userId = $routeParams["uid"];
@@ -50,6 +73,7 @@
                 });
         }
 
+<<<<<<< HEAD
         init();
 
         function logout(){
@@ -61,6 +85,26 @@
                 })
         }
 
+=======
+
+        function init() {
+            UserService.findUserById(vm.userId)
+                .success(function (user) {
+                        if (user != '0') {
+                            vm.user = user;
+                            vm.userId = $routeParams.uid;
+                        }
+                    }
+                )
+                .error
+                (function (err) {
+                        console.log("error in user controler");
+                    }
+                );
+        }
+
+        init();
+>>>>>>> origin/master
 
         function unregisterUser() {
             UserService.deleteUser(vm.userId)
@@ -93,8 +137,12 @@
 
         function createNewUser(user) {
 
+<<<<<<< HEAD
             if (user.password === user.verifypassword)
             {
+=======
+            if (user.password === user.verifypassword) {
+>>>>>>> origin/master
                 var UserPromise = UserService.findUserByUsername(user.username);
 
                 UserPromise
@@ -105,6 +153,7 @@
                     )
                     .error
                     (function (err) {
+<<<<<<< HEAD
                         var promise = UserService.register(user);
                         promise
                             .success(function (user) {
@@ -117,12 +166,30 @@
                                 vm.error = "Failed to create user. Please try again!!"
                             });
 
+=======
+                            console.log("create new " + user);
+                            var promise = UserService.createUser(user);
+                            promise
+                                .success
+                                (function (user) {
+                                        $location.url("/user/" + user._id);
+                                    }
+                                )
+                                .error
+                                (function (err) {
+                                        vm.error = "Failed to create user. Please try again."
+                                    }
+                                );
+>>>>>>> origin/master
                         }
                     );
             }
             else {
                 vm.error = "Passwords do not match"
+<<<<<<< HEAD
                 vm.perror= "Please make sure password and verify password are both same"
+=======
+>>>>>>> origin/master
             }
         }
     }

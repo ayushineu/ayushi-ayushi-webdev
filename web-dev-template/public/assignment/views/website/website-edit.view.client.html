@@ -38,7 +38,11 @@
 
             <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 pull-right">
                 <p class="navbar-text">
+<<<<<<< HEAD
                     <a ng-click="model.updateWebsite(model.website._id,model.website); submitted=true" class="navbar-link ">
+=======
+                    <a ng-click="model.updateWebsite(model.website._id,model.website)" class="navbar-link ">
+>>>>>>> origin/master
           <span class="glyphicon glyphicon-ok navbar-fnt ">
           </span>
                     </a>
@@ -70,8 +74,12 @@
         <form name="myForm">
             <div class="form-group">
                 <label for="websiteName" >Website Name</label>
+<<<<<<< HEAD
                 <input id = "websiteName" ng-model="model.newWebsite.name" required type="text" class="form-control"
                        name = "name" ng-class="{ 'error-when' : submitted && myForm.model.website.name.$error.required }"/>
+=======
+                <input id = "websiteName" ng-model="model.newWebsite.name" type="text" class="form-control" />
+>>>>>>> origin/master
             </div>
 
             <span ng-show="submitted && myForm.name.$error.required" class="err">
