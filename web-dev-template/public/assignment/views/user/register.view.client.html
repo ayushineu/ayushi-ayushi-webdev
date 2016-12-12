@@ -1,21 +1,15 @@
 <div class="container">
-<<<<<<< HEAD
 
         <div ng-show="!model.error && registerForm.$submitted && registerForm.$invalid" class="alert alert-danger"
              role="alert">
                 There are errors in the register form
         </div>
-=======
->>>>>>> origin/master
 
         <div ng-show="model.error" class="alert alert-danger" role="alert">
                 {{model.error}}
         </div>
 
-<<<<<<< HEAD
         <form name="registerForm" novalidate ng-submit="registerForm.$valid && model.createNewUser(model.user)">
-=======
->>>>>>> origin/master
         <h1>Register</h1>
         <input type="text"
                class="form-control"
@@ -34,7 +28,6 @@
 
         <input type="password"
                class="form-control"
-<<<<<<< HEAD
                name="password"
                ng-model="model.user.password" required
                name="verifypassword"
@@ -68,16 +61,4 @@
         <a class="btn btn-danger  btn-block"
                 href="#/login">Cancel<a/>
 
-=======
-               ng-model="model.user.password"
-               placeholder="password"/>
-        <input type="password"
-               class="form-control"
-               ng-model="model.user.verifypassword"
-               placeholder="verify password"/>
-        <a class="btn btn-primary btn-block"
-           href ng-click="model.createNewUser(model.user)">Register</a>
-        <a class="btn btn-danger  btn-block"
-           href="#/login">Cancel</a>
->>>>>>> origin/master
 </div>

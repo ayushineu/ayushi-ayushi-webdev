@@ -31,7 +31,8 @@
     .when("/user/:uid", {
                 templateUrl: "views/user/profile.view.client.html",
                 controller:"ProfileController",
-                controllerAs: "model"
+                controllerAs: "model",
+        resolve: { loggedin: checkLoggedin }
             })
             .when("/user/:uid/website", {
                 templateUrl: "views/website/website-list.view.client.html",

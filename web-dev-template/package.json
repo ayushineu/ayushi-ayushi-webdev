@@ -7,15 +7,11 @@
     "body-parser": "^1.15.1",
     "express": "^4.13.4",
     "mongoose": "^4.4.15",
-<<<<<<< HEAD
     "multer": "^1.2.0",
     "cookie-parser": "^1.4.1",
     "express-session": "^1.13.0",
     "bcrypt-nodejs": "0.0.3"
 
-=======
-    "multer": "^1.2.0"
->>>>>>> origin/master
   },
   "devDependencies": {},
   "scripts": {

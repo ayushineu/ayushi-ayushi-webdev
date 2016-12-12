@@ -34,14 +34,10 @@
 <form name="myForm">
     <div class="form-group">
         <label for ="name">Name</label>
-<<<<<<< HEAD
         <input required
                ng-class="{ 'error-when' : submitted && myForm.model.page.name.$error.required }"
                id="name" ng-model="model.page.name" type="text" class="form-control" id="name"
                placeholder="Page Name">
-=======
-        <input id="name" ng-model="model.page.name" type="text" class="form-control" id="name" placeholder="Page Name">
->>>>>>> origin/master
     </div>
     <span ng-show="submitted && myForm.model.page.name.$error.required" class="err">
                 *Required Field

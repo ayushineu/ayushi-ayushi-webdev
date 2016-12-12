@@ -25,21 +25,8 @@
             console.log(newPage);
             if(newPage.name == "")
             {
-<<<<<<< HEAD
                 vm.error = "Please enter the Name";
 
-=======
-                var promise = PageService.createPage(webId, newPage);
-                promise
-                    .success(function(nCreatedPage)
-                    {
-                        $location.url("/user/" + userId + "/website/" + webId + "/page");
-                    })
-                    .error(function(err)
-                    {
-                        vm.error = "Error.Please try again."
-                    });
->>>>>>> origin/master
             }
             else{
 
