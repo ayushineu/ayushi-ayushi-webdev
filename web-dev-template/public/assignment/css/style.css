@@ -7,6 +7,25 @@ body {
     padding-bottom: 65px;
 }
 
+.ng-submitted.ng-invalid .formFieldErrorMsg{
+    color: red;
+    margin-bottom: 10px;
+}
+
+.ng-submitted .ng-invalid{
+    background-color: #f2dede;
+    border-radius: 4px;
+}
+
+div#mismatchData.formFieldErrorMsg{
+    color: red;
+    margin-bottom: 10px;
+}
+
+div#mismatchData{
+    background-color: #f2dede;
+    border-radius: 4px;
+}
 .text-fnt{
     color:#428bca;
 }

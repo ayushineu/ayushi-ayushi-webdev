@@ -20,7 +20,8 @@
             <div class="col-md-1 col-xs-1 col-sm-1 col-lg-1"></div>
             <div class="col-xs-1 col-md-1 col-sm-1 col-lg-1">
                 <p class="navbar-text">
-                    <a href ng-click="model.createNewPage(model.uid,model.wid,model.page)" class="navbar-link ">
+                    <a href ng-click="model.createNewPage(model.uid,model.wid,model.page)"; submitted=true"
+                       class="navbar-link ">
                         <span class="glyphicon glyphicon-ok pull-right "></span>
                     </a>
                 </p>
@@ -30,16 +31,25 @@
 </nav>
 
 <div class="container">
-<form>
+<form name="myForm">
     <div class="form-group">
-        <label for ="pgname">Name</label>
-        <input id="pgname" ng-model="model.page.name" type="text" class="form-control" id="name" placeholder="Page Name">
+        <label for ="name">Name</label>
+        <input required
+               ng-class="{ 'error-when' : submitted && myForm.model.page.name.$error.required }"
+               id="name" ng-model="model.page.name" type="text" class="form-control" id="name"
+               placeholder="Page Name">
     </div>
+    <span ng-show="submitted && myForm.model.page.name.$error.required" class="err">
+                *Required Field
+            </span>
     <div class="form-group">
-        <label for ="pgtitle">Title</label>
-        <input id="pgtitle" ng-model="model.page.title" type="text" class="form-control" id="title" placeholder="Page Title">
+        <label for ="title">Title</label>
+        <input id="title" ng-model="model.page.title" type="text" class="form-control" id="title" placeholder="Page Title">
     </div>
 </form>
+    <div ng-show="model.error" class="alert alert-danger" role="alert">
+        {{model.error}}
+    </div>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom ">

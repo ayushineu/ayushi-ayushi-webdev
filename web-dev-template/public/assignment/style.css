@@ -18,6 +18,25 @@ body {
     height: 28px;
 }
 
+.ng-submitted.ng-invalid .formFieldErrorMsg{
+    color: red;
+    margin-bottom: 10px;
+}
+
+.ng-submitted .ng-invalid{
+    background-color: #f2dede;
+    border-radius: 4px;
+}
+
+div#mismatchData.formFieldErrorMsg{
+    color: red;
+    margin-bottom: 10px;
+}
+
+div#mismatchData{
+    background-color: #f2dede;
+    border-radius: 4px;
+}
 .padding-body{
     padding-top: 60px;
     padding-bottom :50px;

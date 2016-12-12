@@ -1,0 +1,19 @@
+.bkgimg-opening-ceremony {
+    background-image: url("./recite-2bd1tr.png ");
+    background-repeat: no-repeat;
+    background-size: 150px 100px;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    z-index: -1;
+
+}
+
+.bkcolor{
+
+    background-color: rgba(84, 27, 245, 0.17);
+
+}
+

@@ -29,17 +29,25 @@
 </nav>
 
 <div class="container">
-<form>
+<form name="myForm">
     <div class="form-group">
-        <label for ="pgname">Name</label>
-        <input id="pgname" ng-model="model.currentpage.name" type="text" class="form-control" id="name" >
+        <label for ="name">Name</label>
+        <input id="name" ng-model="model.currentpage.name"  required
+               ng-class="{ 'error-when' : submitted && myForm.model.currentpage.name.$error.required }"
+               type="text" class="form-control" id="name" >
     </div>
     <div class="form-group">
-        <label for = "pgtitle">Title</label>
-        <input id="pgtitle" ng-model="model.currentpage.title" type="text" class="form-control" id="title" placeholder="Page Title">
+        <label for = "title">Title</label>
+        <input id="title" ng-model="model.currentpage.title" type="text" class="form-control" id="title" placeholder="Page Title">
+        <span ng-show="submitted && myForm.model.page.name.$error.required" class="err">
+                    *Required Field
+                </span>
     </div>
     <a class="btn btn-danger  btn-block" ng-click="model.deletePage(model.currentpage._id)">Delete</a>
 </form>
+    <div ng-show="model.error" class="alert alert-danger" role="alert">
+        {{model.error}}
+    </div>
 </div>
 
 

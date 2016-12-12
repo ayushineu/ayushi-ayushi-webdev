@@ -9,25 +9,37 @@
 
     function NewPageController($routeParams, PageService, $location){
         var vm = this;
-        vm.wid = $routeParams.wid;
-        vm.uid = $routeParams.uid;
+
         vm.createNewPage = createNewPage;
 
+        function init() {
+            vm.page = {"name": "", "description": ""};
+            vm.wid = $routeParams.wid;
+            vm.uid = $routeParams.uid;
+        }
+
+        init();
+
+
         function createNewPage(userId,webId,newPage){
-            if(newPage.name)
+            console.log(newPage);
+            if(newPage.name == "")
             {
-                var promise = PageService.createPage(webId, newPage);
-                promise
-                    .success(function(nCreatedPage){
-                        $location.url("/user/" + userId + "/website/" + webId + "/page");
-                    })
-                    .error(function(err){
-                        vm.error = "Error.Please try again."
-                    });
+                vm.error = "Please enter the Name";
+
             }
             else{
 
-                vm.error = "Please enter the Name";
+                var promise = PageService.createPage(webId, newPage);
+                promise
+                    .success(function(nCreatedPage)
+                    {
+                        $location.url("/user/" + userId + "/website/" + webId + "/page");
+                    })
+                    .error(function(err)
+                    {
+                        vm.error = "Error.Please try again."
+                    });
             }
         }
     }
@@ -70,7 +82,7 @@
             PageService.updatePage(pageId, newPage)
                 .success(function(res){
                     $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page");
-                    console.log("in here update rtyu");
+                    console.log("in here update page");
                 })
                 .error(function(err){
                     vm.error = "Page id does not match";

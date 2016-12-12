@@ -1,0 +1,86 @@
+    <!DOCTYPE html>
+    <html lang="en" ng-app="AuthorAttic">
+    <head>
+        <link href="../css/bootstrap.css" rel="stylesheet"/>
+        <link href="../project/css/home.css" rel="stylesheet"/>
+        <link href="../project/css/style.css" rel="stylesheet"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+        <script src="app.js"></script>
+        <meta charset="UTF-8">
+        <title>bookReads </title>
+    </head>
+    <body style="background-color: rgba(153, 153, 153, 0.18)"!important>
+    <div class="container">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="row">
+                <div class="col-xs-3 col-md-3 col-sm-3 col-lg-3">
+
+            <h1 style="font-family: 'Courier New'">book<strong>Reads</strong></h1>
+                    </div>
+
+                <div class="pull-right" style="display: inline-block">
+            <div  class="col-xs-7 col-md-7 col-sm-7 col-lg-7">
+                <div class="row">
+                    <div  class="col-xs-6 col-md-6 col-sm-6 col-lg-6">
+                <input class="formBox" id="userSignInFormEmail" type="email" name="user[email]" placeholder="Email address" tabindex="1" style="border-radius: 5px" style="margin-right: 100px"><br>
+                <input type="checkbox" id="remember_me" name="remember_me" checked="" tabindex="3"><label for="remember_me" class="greyText">Remember me</label>
+            </div>
+                    &nbsp;
+                    <div  class="col-xs-5 col-md-5 col-sm-5 col-lg-5">
+                <input class="formBox" id="userPassword" type="password" name="user[password]" placeholder="password" tabindex="1" style="border-radius: 5px" ><br>
+                <label class="greyText">Forgot Password?</label>
+                        </div>
+            </div>
+            </div>
+                    </div>
+                <div class="col-xs-2 col-md-2 col-sm-2 col-lg-2"></div>
+            </div>
+        </nav>
+
+        <br>
+        <br>
+        <br>
+        <br>
+    </div>
+    <br>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-3 col-md-3 col-sm-3 col-lg-3">
+                </div>
+            <div class="col-xs-6 col-md-6 col-sm-6 col-lg-6">
+        <h2 style="color: #66512c" style="font-family: Calibri " >Find Your Next Favorite Book</h2>
+</div>
+            <div class="col-xs-3 col-md-3 col-sm-3 col-lg-3">
+            </div>
+        </div>
+    <div class="input-group">
+            <input ng-model="keyword" type="text" class="form-control" placeholder="Search for...">
+            <span class="input-group-btn">
+            <button ng-click= "model.getBookInformation(keyword)" id="mybutton" class="btn btn-default" type="button">Go!</button>
+          </span>
+            </div>
+    <div class="container">
+    <table  class="table table-striped">
+        <thead>
+        <th>Title </th>
+        <th>Authors </th>
+        <th>Published Date </th>
+        <th>Publisher</th>
+        <th>Description</th>
+        </thead>
+    <tbody>
+            <tr id="results" ng-repeat ="book in model.books">
+                <td>{{book.volumeInfo.title}}</td>
+                <td >{{book.volumeInfo.authors.join()}}</td>
+                <td>{{book.volumeInfo.publishedDate}}</td>
+                <td>{{book.volumeInfo.publisher}}</td>
+                <td>{{book.volumeInfo.description}}</td>
+                <br>
+            </tr>
+    </tbody>
+        </table>
+        </div>
+    </div>
+    </body>
+    </html>

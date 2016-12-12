@@ -15,11 +15,15 @@
         vm.editRedirect = editRedirect;
         function init() {
             console.log("list widgets");
-             WidgetService.findWidgetsByPageId(vm.pid)
-                 .success(function(widgetlist){
-                     vm.widgets =widgetlist;
-                 })
-
+            WidgetService.findWidgetsByPageId(vm.pid)
+                .success(function (foundWidgets)
+                {
+                    vm.widgets = foundWidgets;
+                })
+                .error(function (err)
+                {
+                    vm.error = "Error. Please try again";
+                });
         }
         init();
 
@@ -38,38 +42,53 @@
 
 
         function editRedirect(w){
-            if (w.widgetType != "HTML"){
             $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page/" + vm.pid + "/widget/" + w._id);
-        }}
+        }
     }
 
     function NewWidgetController($location ,$routeParams, WidgetService){
         var vm = this;
-        vm.uid = $routeParams.uid;
-        vm.wid = $routeParams.wid;
-        vm.pid = $routeParams.pid;
-        vm.wgid = $routeParams.wgid;
-        vm.createYoutube = {"widgetType": "YOUTUBE",  "width": "" , "url": "" };
-        vm.createHeader ={ "_id": "", "widgetType": "HEADER",  "size": "", "text": ""};
-        vm.createImage= { "_id": "", "widgetType": "IMAGE", "width":"", "url": ""};
+        function init() {
+            vm.uid = $routeParams.uid;
+            vm.wid = $routeParams.wid;
+            vm.pid = $routeParams.pid;
+            vm.wgid = $routeParams.wgid;
+            vm.createYoutube = {name: "Youtube Widget", type: "YOUTUBE", width: "100%", url: ""};
+            vm.createHeader = {name: "Header Widget", type: "HEADER", size: 2, text: "New Header Text"};
+            vm.createImage = {name: "Image Widget", type: "IMAGE", width: "100%", url: ""};
+            vm.createHTML = {name: "HTML Widget", type: "HTML", text: ""};
+            vm.createTEXT = {
+                name: "Text Input Widget",
+                type: "INPUT",
+                formatted: false,
+                rows: 1,
+                placeholder: "",
+                text: ""
+            };
+        } init();
         vm.createWidget = createWidget;
 
 
-        function createWidget(newWidgetType){
+        function createWidget(newWidgetType)
+        {
 
             WidgetService.createWidget(vm.pid, newWidgetType)
-                .success(function(newWidget){
+                .success(function(newWidget)
+                {
                     console.log(newWidget._id);
                     $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page/" + vm.pid + "/widget/" + newWidget._id);
                 })
-                .error(function(err){
-                    vm.error = "Error. Please try again..";
+                .error(function(err)
+                {
+                    console.log("ERROR in create widget");
+                    vm.error = "Error. Please try again.";
                 });
 
             }
-
-
     }
+
+
+
     function EditWidgetController($routeParams, WidgetService, $location){
         var vm = this;
         vm.wid = $routeParams.wid;
@@ -82,13 +101,14 @@
         function init() {
             console.log(vm.wgid);
 
-             WidgetService.findWidgetById(vm.wgid)
-                 .success(function(fwidget){
-                     vm.widget=fwidget;
-                 })
+            WidgetService.findWidgetById(vm.wgid)
+                .success(function(fwidget){
+                    vm.widget=fwidget;
+                })
 
         }
         init();
+
 
         function deleteWidget(widgetdel) {
             console.log("atleast here");
@@ -104,8 +124,60 @@
                 });
 
             }
+        //
+        // function validateWidgetType(widgetToTest){
+        //     var validationFailed = false;
+        //
+        //     switch(widgetToTest.type){
+        //         case "HEADING":
+        //             if(widgetToTest.text == '' || widgetToTest.text == null){
+        //                 validationFailed = true;
+        //             }
+        //             break;
+        //         case "IMAGE":
+        //             if(widgetToTest.url == '' || widgetToTest.url == null){
+        //                 validationFailed = true;
+        //             }
+        //             break;
+        //         case "YOUTUBE":
+        //             if(widgetToTest.url == '' || widgetToTest.url == null){
+        //                 validationFailed = true;
+        //             }
+        //             break;
+        //     }
+        //
+        //     return validationFailed;
+        // }
+        //
+        // function updateWidget(){
+        //     if(validateWidgetType(vm.currentWidget)){
+        //         switch(vm.currentWidget.type) {
+        //             case "HEADING":
+        //                 vm.error = "Header Text cannot be blank";
+        //                 break;
+        //             case "IMAGE":
+        //                 vm.error = "Image Url cannot be blank";
+        //                 break;
+        //             case "YOUTUBE":
+        //                 vm.error = "Video Url cannot be blank";
+        //                 break;
+        //             default:
+        //                 vm.error = "There is something wrong. Please check whether form fields are correctly filled."
+        //                 break;
+        //         }
+        //     }
+        //     else {
+        //         WidgetService.updateWidget(vm.wgid, vm.currentWidget)
+        //             .then(function (response) {
+        //                 $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page/" + vm.pid + "/widget");
+        //             }, function (err) {
+        //                 vm.error = "Failed to update widget";
+        //             });
+        //     }
+        // }
 
-
+        //
+        //
         function updateWidget(newwidget){
 
             WidgetService.updateWidget(vm.wgid,vm.widget)

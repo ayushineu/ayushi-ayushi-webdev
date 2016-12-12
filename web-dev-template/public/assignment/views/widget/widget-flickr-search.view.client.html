@@ -1,0 +1,60 @@
+<nav class="navbar navbar-default navbar-fixed-top  ">
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-md-1 col-xs-1 col-sm-1 col-lg-1">
+                <p class="navbar-text">
+                    {{model.wgid}}
+                    {{model.uid}}
+                    <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{model.wgid}}" class="navbar-link">
+                        <span class="glyphicon glyphicon-chevron-left "></span>
+                    </a>
+                </p>
+            </div>
+
+
+
+            <div class="navbar-header">
+                <a class="navbar-brand page-widget-header-brand"
+                   href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{model.wgid}}">
+                    Search Flickr
+                </a>
+            </div>
+        </div>
+</nav>
+
+
+<div class="container-fluid">
+    <form id="SearchFlickr">
+        <div class="input-group">
+            <input ng-model="searchText" type="text" class="form-control">
+            <span class="input-group-btn">
+                <a ng-click="model.searchPhotos(searchText)" class="btn btn-default" type="button">
+                    <span class="glyphicon glyphicon-search"></span>
+                </a>
+            </span>
+        </div>
+    </form>
+
+    <div class="row">
+        <div class="col-xs-4" ng-repeat="photo in model.photos.photo">
+            <img ng-click="model.selectPhoto(photo)"
+                 ng-src="https://farm{{photo.farm}}.staticflickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}_s.jpg"/>
+        </div>
+    </div>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom ">
+                <div class="row">
+                    <div class="col-xs-10 col-md-11 col-sm-11 col-lg-11"></div>
+                    <div class="col-xs-2 col-md-1 col-sm-1 col-lg-1 pull-right">
+                        <div class="container">
+                            <div class="row navbar-text">
+                                <a href="#/user/{{model.uid}}">
+                                    <span class="glyphicon glyphicon-user "></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>

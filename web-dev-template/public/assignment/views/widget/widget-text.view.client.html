@@ -1,0 +1,89 @@
+<nav class="navbar navbar-default navbar-fixed-top  ">
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-md-1 col-xs-1 col-sm-1 col-lg-1">
+                <p class="navbar-text">
+                    <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget" class="navbar-link">
+                        <span class="glyphicon glyphicon-chevron-left "></span>
+                    </a>
+                </p>
+            </div>
+
+            <div class="col-md-9 col-xs-9 col-sm-9 col-lg-9">
+                <a class="navbar-brand">
+                    <span >Widget Edit</span>
+                </a>
+            </div>
+            <div class="col-md-1 col-xs-1 col-sm-1 col-lg-1"></div>
+            <div class="col-xs-1 col-md-1 col-sm-1 col-lg-1">
+                <p class="navbar-text">
+                    <a href="javascript:$('#updateWidget').click()">
+                        <span class="glyphicon glyphicon-ok"></span>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div ng-show="!model.error && widgetForm.$submitted && widgetForm.$invalid" class="alert alert-danger"
+         role="alert">
+        There are errors in the widget form
+    </div>
+    <div ng-show="model.error" class="alert alert-danger" role="alert">
+        {{model.error}}
+    </div>
+    <form name="widgetForm" id="widgetForm" novalidate
+          ng-submit="widgetForm.$valid && model.updateWidget()">
+        <div class="form-group">
+            <label >Name</label>
+            <input name="widgetName" required  ng-model="model.widget.name" type="text" class="form-control" id="name" />
+
+            <div ng-show="widgetForm.$submitted && widgetForm.widgetName.$invalid" class="formFieldErrorMsg">
+                Widget Name is a required field
+            </div>
+        </div>
+        <div class="form-group">
+            <label >Text</label>
+            <input ng-model="model.widget.text" type="text" class="form-control" id="title" />
+        </div>
+        <div class="form-group">
+            <label >Rows</label>
+            <input ng-model="model.widget.rows" type="number" class="form-control"  />
+        </div>
+        <div class="form-group">
+            <label >Placeholder</label>
+            <input ng-model="model.widget.placeholder" type="text" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label >Formatted</label>
+            <input ng-model="model.widget.formatted" type="checkbox" />
+        </div>
+
+        <a ng-click="model.deleteWidget(model.widget)" class="btn btn-danger  btn-block">Delete</a>
+        <button id="updateWidget" type="submit" class="btn btn-primary btn-block" style="display: none;">Update Widget</button>
+    </form>
+
+    <div ng-show="model.error" class="alert alert-danger" role="alert">
+        {{model.error}}
+    </div>
+
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom ">
+    <div class="row">
+        <div class="col-xs-10 col-md-11 col-sm-11 col-lg-11"></div>
+        <div class="col-xs-2 col-md-1 col-sm-1 col-lg-1 pull-right">
+            <div class="container">
+                <div class="row navbar-text">
+                    <a href="#/user/{{model.uid}}">
+                        <span class="glyphicon glyphicon-user "></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>

@@ -1,20 +1,88 @@
-(function(){
+(function () {
+
     angular
         .module("WebAppMaker")
         .factory("UserService", UserService);
 
     function UserService($http) {
 
-
-        var api = {
+        var api =
+        {
+            createUser: createUser,
             findUserByCredentials: findUserByCredentials,
             findUserById: findUserById,
-            createUser: createUser,
             findUserByUsername: findUserByUsername,
+            findCurrentUser: findCurrentUser,
             updateUser: updateUser,
-            unregisterUser: unregisterUser
-        };
-        return api;
+            deleteUser: deleteUser,
+            login:login,
+            logout: logout,
+            register: register
+
+        };return api;
+
+        function register(user) {
+            return $http.post("/api/register", user);
+        }
+        function findCurrentUser(){
+            var url = "/api/user/";
+            return $http.get(url);
+        }
+
+        function logout(user) {
+            return $http.post("/api/logout");
+        }
+
+
+        function login(user) {
+            return $http.post("/api/login", user);
+        }
+
+
+        function deleteUser(userId)
+        {
+            var url = "/api/user/" + userId;
+            return $http.delete(url);
+        }
+
+
+        function updateUser(userId, user)
+        {
+            var url = "/api/user/" + userId;
+            return $http.put(url, user);
+        }
+
+
+        function findUserByUsername(username)
+        {
+            var url = "/api/user?username=" + username;
+            return $http.get(url);
+        }
+
+
+        function findUserById(userId)
+        {
+            var url = "/api/user/" + userId;
+            return $http.get(url);
+        }
+
+        function findUserByCredentials(username, password)
+        {
+            var url = "/api/user?username=" + username + "&password=" + password;
+            return $http.get(url);
+        }
+
+        function createUser(user)
+        {
+            return $http.post("/api/user", user);
+        }
+
+
+    }
+
+})();
+
+/*
 
         function unregisterUser(uid) {
             var url = "/api/user/" + uid;
@@ -75,3 +143,4 @@
         }
     }
 })();
+*/
