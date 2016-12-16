@@ -1,6 +1,6 @@
 module.exports = function(){
     var mongoose = require('mongoose');
-    mongoose.createConnection('mongodb://localhost/web-dev-fall-2016');
+    // mongoose.createConnection('mongodb://localhost/web-dev-fall-2016');
 
     var userModel = require("./user/user.model.server")();
     var websiteModel = require("./website/website.model.server")();

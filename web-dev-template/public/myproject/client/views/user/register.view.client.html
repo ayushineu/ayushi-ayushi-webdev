@@ -1,0 +1,143 @@
+<!--style="background-color: rgba(153, 153, 153, 0.18)"!important-->
+<div class="container">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <!--<nav class="navbar navbar-default">-->
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a aria-expanded="false" class="navbar-brand" style="text-decorations:none; color:inherit;" href="#/home">book<strong>Reads</strong></a>
+
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li ><a href="#/home/latest">Latest Release <span class="sr-only"></span></a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Languages <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li ><a href="#/home/booksbyLanguage/en">English</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li ><a href="#/home/booksbyLanguage/fr">French</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li ><a href="#/home/booksbyLanguage/de">German</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li ><a href="#/home/booksbyLanguage/el">Greek</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li ><a href="#/home/booksbyLanguage/hi">Hindi</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li ><a href="#/home/booksbyLanguage/es">Spanish</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li ><a href="#/home/booksbyLanguage/ru">Russian</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Genre <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#/home/booksbyGenre/fiction">Fiction</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#/home/booksbyGenre/Crime">Crime</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#/home/booksbyGenre/Suspense">Suspense</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#/home/booksbyGenre/Romance">Romance</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#/home/booksbyGenre/Inspiration">Inspirational</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#/home/booksbyGenre/Business">Business</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#/home/booksbyGenre/Computer">Computer</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+    </nav>
+</div>
+
+<!--------------------------------------------------------------------------------------------------------------->
+
+
+<div class="container">
+
+    <div ng-show="!model.error && registerForm.$submitted && registerForm.$invalid" class="alert alert-danger"
+         role="alert">
+        There are errors in the register form
+    </div>
+
+    <div ng-show="model.error" class="alert alert-danger" role="alert">
+        {{model.error}}
+    </div>
+
+    <form name="registerForm" novalidate ng-submit="registerForm.$valid && model.createNewUser(model.user)">
+        <h1>Register</h1>
+        <input type="text"
+               class="form-control"
+               ng-model="model.user.username" required
+               placeholder="username"
+               name="username"
+               autocorrect="off" autocapitalize="off"/>
+
+        <div ng-show="registerForm.$submitted && registerForm.username.$invalid" class="formFieldErrorMsg">
+            Username is a required field
+        </div>
+
+        <div ng-show="registerForm.$submitted && registerForm.password.$invalid" class="formFieldErrorMsg">
+            Password is a required field
+        </div>
+
+        <input type="password"
+               class="form-control"
+               name="password"
+               ng-model="model.user.password" required
+               name="verifypassword"
+               placeholder="password"/>
+
+        <div ng-show="registerForm.$submitted && registerForm.password.$invalid" class="formFieldErrorMsg">
+            Password is a required field
+        </div>
+
+        <input type="password"
+               class="form-control"
+               ng-model="model.user.verifypassword" required
+               placeholder="verify password"
+               name="verifypassword"/>
+
+        <div ng-show="registerForm.$submitted && registerForm.verifypassword.$invalid" class="formFieldErrorMsg">
+            Verify Password is a required field
+        </div>
+
+        <div id="mismatchData" ng-show="registerForm.$submitted && registerForm.verifypassword.$valid && registerForm.password.$valid && (model.user.password !== model.user.verifypassword)" class="formFieldErrorMsg">
+            Both passwords must match
+        </div>
+
+
+
+
+        <button class="btn btn-primary btn-block"
+                href ng-click="model.createNewUser(model.user)">Register</button>
+
+    </form>
+    <a class="btn btn-danger  btn-block"
+       href="#/login">Cancel<a/>
+
+</div>
+
+<!------------------------------------------------------------------------------------------------------------------->
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="navbar-inner">
+            <a class="navbar-brand" href="#"></a>
+            <p class="navbar-text pull-right">
+            </p>
+        </div>
+    </div>
+</nav>

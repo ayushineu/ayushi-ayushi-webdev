@@ -11,15 +11,17 @@ app.use(express.static(__dirname + '/public'));
 var cookieParser = require('cookie-parser');
 var session      = require('express-session');
 app.use(cookieParser());
-app.use(session({ secret: process.env.SESSION_SECRET }));
+// app.use(session({ secret: process.env.SESSION_SECRET }));
+// app.use(cookieParser());
+// app.use(session({ secret: process.env.SESSION_SECRET }));
 var passport = require('passport');
 app.use(passport.initialize());
 app.use(passport.session());
 
 
-require ("./test/app.js")(app);
+// require ("./test/app.js")(app);
 
-require("./assignment/app.js")(app);
+require("E:/web dev/Assignment-6/web-dev-template/myproject/app.js")(app);
 
 /*var websites = [
     {_id: 321, name: 'facebook.com', uid: 123},

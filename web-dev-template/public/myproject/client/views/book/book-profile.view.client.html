@@ -1,0 +1,274 @@
+<!--style="background-color: rgba(153, 153, 153, 0.18)"!important-->
+<div class="container">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <!--<nav class="navbar navbar-default">-->
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a aria-expanded="false" class="navbar-brand" style="text-decorations:none; color:inherit;" href="#/home">book<strong>Reads</strong></a>
+
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li ><a href="#/home/latest">Latest Release <span class="sr-only"></span></a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Languages <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li ><a href="#/home/booksbyLanguage/en">English</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li ><a href="#/home/booksbyLanguage/fr">French</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li ><a href="#/home/booksbyLanguage/de">German</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li ><a href="#/home/booksbyLanguage/el">Greek</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li ><a href="#/home/booksbyLanguage/hi">Hindi</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li ><a href="#/home/booksbyLanguage/es">Spanish</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li ><a href="#/home/booksbyLanguage/ru">Russian</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Genre <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#/home/booksbyGenre/fiction">Fiction</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#/home/booksbyGenre/Crime">Crime</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#/home/booksbyGenre/Suspense">Suspense</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#/home/booksbyGenre/Romance">Romance</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#/home/booksbyGenre/Inspiration">Inspirational</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#/home/booksbyGenre/Business">Business</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#/home/booksbyGenre/Computer">Computer</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <!--<ul class="nav navbar-nav navbar-right navbar-form ">-->
+                    <!--<li ng-show="model.user!=null"><a class="page-scroll" href="#/user">-->
+                        <!--<span class="headerLink">{{model.user.firstName}}</span></a></li>-->
+                <!--</ul>-->
+                <ul class="nav navbar-nav navbar-right navbar-form ">
+                    <li ng-hide="model.user!=null"><a href="#/login">Sign In <span class="sr-only"></span></a></li>
+                    <li ng-hide="model.user!=null"><a href="#/register">Sign Up <span class="sr-only"></span></a></li>
+                    <li ng-show="model.user!=null"><a class="page-scroll" href="#/user">
+                        <span class="headerLink">{{model.user.firstName}}</span></a></li>
+                    <li ng-show="model.user!=null"><a ng-click="model.logout()">Sign Out <span class="sr-only"></span></a></li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+    </nav>
+</div>
+
+
+<!-------------------------------------------------------------------------------------------------------------------->
+<!--ng-show="model.adminlogin"-->
+
+<div ng-hide="model.hidepage">
+<div class="container-fluid">
+    <div class="row row-eq-height">
+        <div class="col-xs-12 col-sm-7 col-md-6">
+            <img class="img-fluid img-responsive" ng-src="{{model.book.volumeInfo.imageLinks.smallThumbnail}}"/>
+        </div>
+        <div class="col-xs-12 col-sm-5 col-md-6">
+            <h3><b>{{model.book.volumeInfo.title}}</b></h3>
+            <div ng-if="model.addToBLMessage" class="alert alert-danger" role="alert">
+                {{model.addToBLMessage}}
+            </div>
+                <a ng-if="!model.isInBookList"
+               ng-click="model.addBookToBookList()"
+               class="watchList-btn"><span>+ Add to Book List</span></a>
+            <a ng-if="model.isInBookList"
+               ng-click="model.removeBookFromBookList()"
+               class="watchList-btn remwatchList"><span>Remove From Book List</span></a>
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-6">
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <h4><b>Published Date:</b> {{model.book.volumeInfo.publishedDate}}</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-6">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <h4>
+                                <b>Genre:</b>
+                                <span class="label label-default" >
+                                    {{model.book.volumeInfo.categories.join()}}
+                                </span>&nbsp;
+
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h4><b>Authors</b></h4>
+            <span >
+                {{model.book.volumeInfo.authors.join()}}
+            </span>&nbsp;
+
+
+            <h4><b>Preview Link</b></h4>
+            <span >
+                <a  href="{{model.book.volumeInfo.previewLink}}">{{model.book.volumeInfo.previewLink}}</a>
+            </span>
+
+            <h4  ><b>Buy Link</b></h4>
+
+            <span >
+                <a href="{{model.book.saleInfo.buyLink}}">{{model.book.saleInfo.buyLink}}</a>
+            </span>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-md-6">
+            <h3><b>Overview:</b></h3>
+            <h5>{{model.book.volumeInfo.description}}</h5>
+        </div>
+        <div class="col-xs-12 col-md-6">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h4><b>Reviews</b></h4>
+                    <div ng-if="model.alertToLogin" class="alert alert-danger" role="alert">
+                        {{model.alertToLogin}}
+                    </div>
+                    <div ng-repeat="review in model.reviews">
+                        <div class="panel panel-default">
+                            <div ng-if="model.user._id == review.user.userId && model.edit == false"
+                                 class="panel-body reviewPanelGrp">
+                                <p>
+                                <h4><b>{{review.title}}</b></h4>
+                                <a class="reviewUsername" ng-click="model.getUserProfile(review.user.userId)">
+                                    {{review.user.username}}
+                                </a>
+                                <span class="reviewDate">{{review.dateCreated | date : 'mediumDate'}}</span>
+                                <h5>{{review.description}}</h5>
+
+                                </p>
+                                <a class="btn btn-sm btn-danger pull-right deleteReviewBtn" role="button"
+                                   ng-click="model.deleteReview(review.bookId)">
+                                    Delete Review
+                                </a>
+                                <a class="btn btn-sm btn-warning pull-right" role="button"
+                                   ng-click="model.editReview()">
+                                    Edit Review
+                                </a>
+
+                            </div>
+                            <div ng-if="model.user._id==review.user.userId && model.edit==true"
+                                 class="panel-body reviewPanelGrp">
+                                <!--<a ng-click="model.getUserProfile(review.user.userId)">-->
+                                <!--{{review.user.username}}-->
+                                <!--</a>-->
+
+                                <input type="text"
+                                       class="form-control reviewSection"
+                                       value="{{review.title}}"
+                                       ng-model="review.title"/>
+                                <textarea class="form-control reviewSection"
+                                          value="{{review.description}}"
+                                          ng-model="review.description"></textarea>
+                                <a class="btn btn-sm btn-danger pull-right deleteReviewBtn"
+                                   role="button"
+                                   ng-click="model.cancelReview()">
+                                    Cancel
+                                </a>
+                                <a class="btn btn-sm btn-success pull-right"
+                                   role="button"
+                                   ng-click="model.updateReview(review._id, review.title, review.description)">
+                                    Update
+                                </a>
+
+                                <!--<input type="text" value="{{review.title}}" ng-model="review.title"/>-->
+                                <!--<input type="text" value="{{review.description}}" ng-model="review.description"/>-->
+                                <!--<a href="" class="btn btn-success" role="button"-->
+                                <!--ng-click="model.updateReview(review._id, review.title, review.description)">-->
+                                <!--Update-->
+                                <!--</a>-->
+                                <!--<a href="" class="btn btn-danger" role="button"-->
+                                <!--ng-click="model.cancelReview()">-->
+                                <!--Cancel-->
+                                <!--</a>-->
+                            </div>
+                            <div ng-if="model.user._id != review.user.userId"
+                                 class="panel-body reviewPanelGrp">
+                                <!--<a ng-click="model.getUserProfile(review.user.userId)">-->
+                                <!--{{review.user.username}}-->
+                                <!--</a>-->
+                                <!--<h4>{{review.title}}</h4>-->
+                                <!--<h5>{{review.description}}</h5>-->
+                                <p>
+                                <h4><b>{{review.title}}</b></h4>
+                                <a class="reviewUsername" ng-click="model.getUserProfile(review.user.userId)">
+                                    {{review.user.username}}
+                                </a>
+                                <span class="reviewDate">{{review.dateCreated | date : 'mediumDate'}}</span>
+                                <h5>{{review.description}}</h5>
+
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default reviewPanel">
+                <h4 class="reviewHeader "style="margin-left: 20px;"><b>Add a Review</b></h4>
+                <div ng-if="model.error" class="alert alert-danger" role="alert">
+                    {{model.error}}
+                </div>
+                <div class="row panel-body">
+                    <div class="col-xs-12">
+                        <input type="text"
+                               class="form-control addReview"
+                               ng-model="model.defReview.title"
+                               placeholder="Title"/>
+                        <textarea class="form-control addReview"
+                                  ng-model="model.defReview.comment"
+                                  placeholder="Write a review"></textarea>
+                        <br>
+                        <a ng-click="model.createReview(model.defReview.title, model.defReview.comment)"
+                           class="btn btn-primary pull-right">Submit Review</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<div ng-show="model.hidepage">
+    <div class="row">
+        <div class="col-xs-4 col-sm-4 col-md-4">
+            </div>
+   <div class="col-xs-4 col-sm-4 col-md-4">
+    <img src="sorry.jpg"/>
+   </div>
+        <div class="col-xs-4 col-sm-4 col-md-4">
+        </div>
+
+    </div>
+</div>

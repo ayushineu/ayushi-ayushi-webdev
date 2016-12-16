@@ -1,0 +1,118 @@
+<!--style="background-color: rgba(153, 153, 153, 0.18)"!important-->
+<div class="container">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <!--<nav class="navbar navbar-default">-->
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a aria-expanded="false" class="navbar-brand" style="text-decorations:none; color:inherit;" href="#/home">book<strong>Reads</strong></a>
+
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#/home/latest">Latest Release <span class="sr-only"></span></a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Languages <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li ><a href="#/home/booksbyLanguage/en">English</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li ><a href="#/home/booksbyLanguage/fr">French</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li ><a href="#/home/booksbyLanguage/de">German</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li ><a href="#/home/booksbyLanguage/el">Greek</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li ><a href="#/home/booksbyLanguage/hi">Hindi</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li ><a href="#/home/booksbyLanguage/es">Spanish</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li ><a href="#/home/booksbyLanguage/ru">Russian</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Genre <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#/home/booksbyGenre/fiction">Fiction</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#/home/booksbyGenre/Crime">Crime</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#/home/booksbyGenre/Suspense">Suspense</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#/home/booksbyGenre/Romance">Romance</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#/home/booksbyGenre/Inspiration">Inspirational</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#/home/booksbyGenre/Business">Business</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#/home/booksbyGenre/Computer">Computer</a></li>
+                        </ul>
+
+
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right navbar-form ">
+                    <li ng-show="model.user!=null"><a class="page-scroll" href="#/user">
+                        <span class="headerLink">{{model.user.firstName}}</span></a></li>
+                </ul>
+
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+    </nav>
+</div>
+
+<!------------------------------------------------Navbar Ends---------------------------------->
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-3 col-md-3 col-sm-3 col-lg-3">
+        </div>
+        <div class="col-xs-6 col-md-6 col-sm-6 col-lg-6">
+            <h2 style="color: #66512c" style="font-family: Calibri " >Find Your Next Favorite Book</h2>
+        </div>
+        <div class="col-xs-3 col-md-3 col-sm-3 col-lg-3">
+        </div>
+    </div>
+
+    <div class="input-group">
+        <input ng-model="model.keyword" type="text" class="form-control" value="Latest Releases" !imporatnt>
+        <span class="input-group-btn">
+            <button  ng-click="model.searchBook(model.keyword)" id="mybutton" class="btn btn-default" type="button">Go!</button>
+            <!--ng-click= "model.getBookInformation(model.keyword)"-->
+          </span>
+    </div>
+    <div class="container">
+        <table  class="table table-striped">
+            <thead ng-show="model.latest.length > 0">
+            <th>Title </th>
+            <th>Authors </th>
+            <th>Published Date </th>
+            <th>Cover</th>
+            <th>Description</th>
+            </thead>
+            <tbody style="overflow:hidden">
+            <tr id="results" ng-repeat ="book in model.latest">
+                <td><a href ng-click="model.getBookDetails(book.id)">{{book.volumeInfo.title}}</a></td>
+                <td >{{book.volumeInfo.authors.join()}}</td>
+                <td>{{book.volumeInfo.publishedDate}}</td>
+                <td>
+                <!--<img ng-show="{{book.volumeInfo.imageLinks}} != null" ng-src="{{book.volumeInfo.imageLinks.smallThumbnail}}" width="20%" height="20%"/>-->
+                <!--<img ng-show="!{{book.volumeInfo.imageLinks.smallThumbnail}}" src= "myproject/No_book_cover.jpg" width="20%"/>-->
+                <img src="{{book.volumeInfo.imageLinks.smallThumbnail}}"/>
+                </td>
+                <!--<td>{{home.volumeInfo.publisher}}</td>-->
+                <td style="width: 500px;"> {{book.volumeInfo.description}}</td>
+                <br>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

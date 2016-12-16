@@ -3,9 +3,17 @@ input.form-control {
 }
 
 body {
-    padding-top: 65px;
-    padding-bottom: 65px;
-    background-color: rgba(153, 153, 153, 0.18);
+     padding-top: 65px;
+     padding-bottom: 65px;
+     background-color: rgba(153, 153, 153, 0.18);
+ }
+
+.thumbnail {
+    /*padding-top: 65px;*/
+    /*padding-bottom: 65px;*/
+    background-color: rgba(0,0,0,0);
+    border: 0px solid #fff;
+
 }
 
 .text-fnt{
