@@ -13,11 +13,11 @@
         vm.unfollowUser = unfollowUser;
         vm.followUser = followUser;
         vm.getUserProfile = getUserProfile;
-        vm.getBookInfo=getBookInfo;
-        vm.getBookDetails=getBookDetails;
+        vm.getBookInfo = getBookInfo;
+        vm.getBookDetails = getBookDetails;
         // vm.adminlogin=false;
-        vm.getalluser=getalluser;
-        vm.deleteUser=deleteUser;
+        vm.getalluser = getalluser;
+        vm.deleteUser = deleteUser;
         // vm.userlist=[];
 
         var id = $rootScope.currentUser._id;
@@ -26,53 +26,55 @@
         console.log("Profile Controller");
 
         function init() {
-            if ($rootScope.currentUser.type ==="Admin"){
-                vm.adminlogin=true;
+            if ($rootScope.currentUser.type === "Admin") {
+                vm.adminlogin = true;
             }
-            else{
-                vm.adminlogin=false;
+            else {
+                vm.adminlogin = false;
             }
             BookUserService
                 .findUserById(id)
-                .then(function(response) {
+                .then(function (response) {
                     vm.user = response.data;
                 });
 
             getalluser();
         }
+
         init();
 
-        function getBookDetails(book){
-            $rootScope.currentBook=book;
+        function getBookDetails(book) {
+            $rootScope.currentBook = book;
             $location.url("/home/mybookinfo");
 
 
         }
 
-        function deleteUser(user){
+        function deleteUser(user) {
             console.log("in delete user");
             BookUserService
                 .deleteUser(user._id)
-                .then(function(stat){
+                .then(function (stat) {
                     init();
                     vm.success = "Success! You have successfully deleted user";
                 })
         }
-        function getalluser(){
+
+        function getalluser() {
             console.log("calling all users");
             BookUserService
                 .getall()
-                .then(function(allusers){
+                .then(function (allusers) {
                     console.log(allusers);
-                    vm.userlist=allusers.data;
+                    vm.userlist = allusers.data;
                 })
 
         }
 
         function isFollowing(id) {
             var follows = false;
-            for(var i in vm.user.following) {
-                if(vm.user.following[i].userId == id) {
+            for (var i in vm.user.following) {
+                if (vm.user.following[i].userId == id) {
                     follows = true;
                     break;
                 }
@@ -85,12 +87,12 @@
             BookUserService
                 .logout()
                 .then(
-                    function(response){
-                        vm.adminlogin=false;
+                    function (response) {
+                        vm.adminlogin = false;
                         $rootScope.currentUser = null;
                         $location.url("/login");
                     },
-                    function(error) {
+                    function (error) {
                         $rootScope.currentUser = null;
                         $location.url("/login");
                     }
@@ -100,7 +102,7 @@
         function unregister() {
             BookUserService
                 .deleteUser(id)
-                .then(function() {
+                .then(function () {
                         $location.url("/login");
                     },
                     function () {
@@ -112,29 +114,29 @@
         function updateUser(newUser) {
             BookUserService
                 .updateUser(id, newUser)
-                .then(function(response) {
+                .then(function (response) {
                     vm.success = "Success! Your profile was updated successfully";
 
-                }, function(error) {
+                }, function (error) {
                     vm.error = "Unable to update user";
                 })
 
         }
 
         function unfollowUser(userId) {
-            for(var i in vm.user.following) {
-                if(vm.user.following[i].userId == userId) {
+            for (var i in vm.user.following) {
+                if (vm.user.following[i].userId == userId) {
                     vm.user.following.splice(i, 1);
                 }
             }
 
             BookUserService
                 .updateUser(vm.user._id, vm.user)
-                .then(function(stat) {
+                .then(function (stat) {
                         updateFollowingUser(userId)
                         init();
                     },
-                    function(error) {
+                    function (error) {
                         vm.error = "Error in updating logged in user details";
                     });
         }
@@ -143,20 +145,20 @@
             BookUserService
                 .findUserById(userId)
                 .then(
-                    function(response) {
+                    function (response) {
                         var userToUpdate = response.data;
-                        for(var i in userToUpdate.followers) {
-                            if(userToUpdate.followers[i].userId == vm.user._id) {
+                        for (var i in userToUpdate.followers) {
+                            if (userToUpdate.followers[i].userId == vm.user._id) {
                                 userToUpdate.followers.splice(i, 1);
                             }
                         }
                         console.log(userToUpdate)
                         BookUserService
                             .updateUser(userToUpdate._id, userToUpdate)
-                            .then(function(stat) {
+                            .then(function (stat) {
                                     init();
                                 },
-                                function(error) {
+                                function (error) {
                                     vm.error = "Error in updating logged in user details";
                                 });
                     }
@@ -178,11 +180,11 @@
 
             BookUserService
                 .updateUser(vm.user._id, vm.user)
-                .then(function(stat) {
+                .then(function (stat) {
                         updateFollowerUser(userId, followUserObj);
                         init();
                     },
-                    function(error) {
+                    function (error) {
                         vm.error = "Error in updating logged in user details";
                     });
         }
@@ -192,15 +194,15 @@
             BookUserService
                 .findUserById(userId)
                 .then(
-                    function(response) {
+                    function (response) {
                         var userToUpdate = response.data;
                         userToUpdate.followers.push(followUserObj);
                         BookUserService
                             .updateUser(userToUpdate._id, userToUpdate)
-                            .then(function(stat) {
+                            .then(function (stat) {
                                     init();
                                 },
-                                function(error) {
+                                function (error) {
                                     vm.error = "Error in updating logged in user details";
                                 });
                     }
@@ -220,10 +222,9 @@
         function getBookDetails(bookId) {
             console.log("in profile controller");
             console.log(bookId);
-            $location.url("/home/mybookinfo/" + bookId);
+            $location.url("/home/mybookinfo/" + bookId)
         }
-    }
-})();
+    }})();
 //         var vm = this;
 //         vm.updateUser = updateUser;
 //         vm.unregister = unregister;
