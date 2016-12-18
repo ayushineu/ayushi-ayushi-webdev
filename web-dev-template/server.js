@@ -21,7 +21,7 @@ app.use(passport.session());
 
 // require ("./test/app.js")(app);
 
-require("E:/web dev/Assignment-6/web-dev-template/myproject/app.js")(app);
+require("./myproject/app.js")(app);
 
 /*var websites = [
     {_id: 321, name: 'facebook.com', uid: 123},
