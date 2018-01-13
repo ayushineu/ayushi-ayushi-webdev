@@ -4,7 +4,9 @@ var app = express();
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
+var mongoose   = require('mongoose');
+var connectionString = 'mongodb://root:admin@ds155087.mlab.com:55087/wam-fall-2016';
+mongoose.connect(connectionString);
 // configure a public directory to host static content
 app.use(express.static(__dirname + '/public'));
 
